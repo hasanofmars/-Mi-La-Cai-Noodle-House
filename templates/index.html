@@ -1,381 +1,2005 @@
-{% extends "base.html" %}
-{% block title %}Mi La-Cai Noodle House — Vietnamese & Chinese in Salt Lake City{% endblock %}
+{% extends "base.html" %} {% block title %}Mi La-Cai Noodle House — Vietnamese &
+Chinese in Salt Lake City{% endblock %} {% block head_extra %}
+<style>
+  /* ── Scroll-triggered reveals ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-{% block content %}
+  /* ── Cinematic text reveal ── */
+  .clip-reveal {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    animation: clipReveal 1.2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  }
+  @keyframes clipReveal {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  .clip-reveal-delay-1 {
+    animation-delay: 0.3s;
+  }
+  .clip-reveal-delay-2 {
+    animation-delay: 0.6s;
+  }
+  .clip-reveal-delay-3 {
+    animation-delay: 0.9s;
+  }
 
-<!-- Hero -->
-<section class="relative min-h-screen flex items-center overflow-hidden bg-warm-950">
-    <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=1920&q=85" alt="Steaming Beef Pho" class="w-full h-full object-cover opacity-45">
-        <div class="absolute inset-0 bg-gradient-to-b from-warm-950/90 via-warm-950/65 to-warm-950/85"></div>
-    </div>
+  /* ── Gradient text animation ── */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
 
-    <!-- Floating Accents -->
-    <div class="absolute top-[18%] right-[6%] animate-float hidden xl:block" style="animation-delay: 0s">
-        <div class="w-16 h-16 bg-white/5 backdrop-blur-xl rounded-full flex items-center justify-center text-3xl border border-white/8">🥟</div>
-    </div>
-    <div class="absolute bottom-[22%] left-[4%] animate-float hidden xl:block" style="animation-delay: 3s">
-        <div class="w-12 h-12 bg-white/5 backdrop-blur-xl rounded-full flex items-center justify-center text-2xl border border-white/8">🥢</div>
-    </div>
+  /* ── Hue shift for hero wash layers ── */
+  @keyframes hueShift {
+    0% {
+      filter: hue-rotate(0deg) saturate(1);
+    }
+    50% {
+      filter: hue-rotate(10deg) saturate(1.2);
+    }
+    100% {
+      filter: hue-rotate(-5deg) saturate(0.9);
+    }
+  }
 
-    <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 w-full">
-        <div class="max-w-2xl">
-            <div class="animate-fade-in mb-8">
-                <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 backdrop-blur-sm border border-primary-500/20 rounded-full text-primary-300 text-sm font-semibold">
-                    <span class="flex gap-0.5 text-yellow-400 text-xs">★★★★<span class="text-yellow-400/30">★</span></span>
-                    <span class="text-white/20">|</span>
-                    4.6 · 1,900+ Reviews
-                </span>
+  /* ── Floating orbs ── */
+  @keyframes orbFloat {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(15px, -20px) scale(1.05);
+    }
+    50% {
+      transform: translate(-8px, -30px) scale(0.95);
+    }
+    75% {
+      transform: translate(-15px, -10px) scale(1.02);
+    }
+  }
+  .orb {
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .orb-delay-1 {
+    animation-delay: -2s;
+  }
+  .orb-delay-2 {
+    animation-delay: -4s;
+  }
+  .orb-delay-3 {
+    animation-delay: -6s;
+  }
+
+  /* ── 3D Tilt Cards ── */
+  .tilt-card {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .tilt-card:hover {
+    transform: rotateY(-3deg) rotateX(3deg) scale(1.02);
+  }
+
+  /* ── Shimmer border ── */
+  @keyframes shimmerBorder {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+  .shimmer-border {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(197, 117, 56, 0.3),
+        transparent
+      )
+      0 0 / 200% 100%;
+    animation: shimmerBorder 3s linear infinite;
+  }
+
+  /* ── Counter ── */
+  .counter-num {
+    display: inline-block;
+  }
+
+  /* ── Parallax depth layers ── */
+  .parallax-slow {
+    transition: transform 0.1s linear;
+  }
+
+  /* ── Glass morphism enhanced ── */
+  .glass-deep {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(197, 117, 56, 0.2);
+  }
+
+  /* ── Testimonial auto-scroll ── */
+  @keyframes scrollUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+  .testimonial-scroll {
+    animation: scrollUp 30s linear infinite;
+  }
+  .testimonial-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── Particle dots ── */
+  .particle-grid {
+    background-image: radial-gradient(
+      circle at 25px 25px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 0
+    );
+    background-size: 50px 50px;
+  }
+
+  /* ── Glow effects ── */
+  .glow-amber {
+    box-shadow:
+      0 0 80px -10px rgba(197, 117, 56, 0.25),
+      0 0 160px -20px rgba(197, 117, 56, 0.1);
+  }
+  .glow-white {
+    box-shadow: 0 0 60px -10px rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Image zoom ── */
+  .img-zoom {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .img-zoom-wrap:hover .img-zoom {
+    transform: scale(1.08);
+  }
+
+  /* ── Gradient text helpers ── */
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #c57538 0%, #e8a87c 50%, #c57538 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #f59e0b, #d97706, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  /* ── Pulsing ring ── */
+  @keyframes pulseRing {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+  .pulse-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid rgba(197, 117, 56, 0.3);
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  /* ── Smooth marquee ── */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── Loading shimmer for images ── */
+  .img-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 25%,
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(255, 255, 255, 0.02) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmerBorder 2s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+      opacity: 1;
+      transform: none;
+    }
+    .animate-marquee,
+    .testimonial-scroll,
+    .orb {
+      animation: none;
+    }
+  }
+</style>
+{% endblock %} {% block content %} {#
+══════════════════════════════════════════════════════════════ #} {# 1.
+CINEMATIC HERO — Full-screen Parallax with Animated Gradient Overlay #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="relative min-h-screen flex items-center bg-warm-950 overflow-hidden"
+  id="hero"
+>
+  {# Abstract animated background — no photo #}
+  <div class="absolute inset-0 overflow-hidden">
+    {# Deep gradient base #}
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-warm-950 via-warm-950 to-warm-900"
+    ></div>
+
+    {# Animated color-wash layers #}
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-primary-500/8 via-amber-500/5 to-rose-500/6 animate-[hueShift_12s_ease-in-out_infinite_alternate]"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-bl from-emerald-500/4 via-transparent to-primary-600/6 animate-[hueShift_15s_ease-in-out_infinite_alternate-reverse]"
+    ></div>
+
+    {# Large animated gradient orbs — more dramatic #}
+    <div
+      class="absolute top-[5%] right-[5%] w-[600px] h-[600px] bg-gradient-to-br from-primary-600/12 via-primary-500/8 to-transparent rounded-full blur-[180px] orb"
+      style="animation-duration: 14s"
+    ></div>
+    <div
+      class="absolute bottom-[10%] left-[0%] w-[500px] h-[500px] bg-gradient-to-tr from-amber-600/10 via-orange-500/6 to-transparent rounded-full blur-[160px] orb orb-delay-1"
+      style="animation-duration: 16s"
+    ></div>
+    <div
+      class="absolute top-[30%] left-[30%] w-[400px] h-[400px] bg-gradient-to-br from-rose-600/6 via-purple-500/4 to-transparent rounded-full blur-[140px] orb orb-delay-2"
+      style="animation-duration: 18s"
+    ></div>
+
+    {# Animated geometric pattern overlay #}
+    <svg
+      class="absolute inset-0 w-full h-full opacity-[0.04]"
+      viewBox="0 0 1200 800"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <pattern
+          id="heroGrid"
+          width="120"
+          height="120"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 120 0 L 0 0 0 120"
+            fill="none"
+            stroke="rgba(197,117,56,0.3)"
+            stroke-width="0.5"
+          />
+          <circle cx="60" cy="60" r="2" fill="rgba(197,117,56,0.4)" />
+        </pattern>
+        <linearGradient id="gridFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="white" />
+          <stop offset="60%" stop-color="white" stop-opacity="0.5" />
+          <stop offset="100%" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <rect
+        width="100%"
+        height="100%"
+        fill="url(#heroGrid)"
+        mask="url(#gridMask)"
+      />
+      <mask id="gridMask">
+        <rect width="100%" height="100%" fill="url(#gridFade)" />
+      </mask>
+    </svg>
+
+    {# Decorative geometric shapes that float #}
+    <div
+      class="absolute top-[18%] left-[8%] w-32 h-32 border border-primary-500/10 rounded-[3rem] rotate-45 orb"
+      style="animation-duration: 20s"
+    ></div>
+    <div
+      class="absolute bottom-[25%] right-[12%] w-24 h-24 border border-amber-500/10 rounded-full orb orb-delay-1"
+      style="animation-duration: 18s"
+    ></div>
+    <div
+      class="absolute top-[65%] left-[5%] w-16 h-16 border border-rose-500/10 rounded-2xl rotate-12 orb orb-delay-2"
+      style="animation-duration: 22s"
+    ></div>
+    <div
+      class="absolute top-[10%] right-[25%] w-20 h-20 border border-emerald-500/8 rounded-xl -rotate-12 orb"
+      style="animation-duration: 25s"
+    ></div>
+
+    {# Particle dots grid #}
+    <div class="absolute inset-0 particle-grid opacity-[0.05]"></div>
+  </div>
+
+  {# Main content #}
+  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      {# ── Text column ── #}
+      <div class="lg:col-span-7">
+        {# Badge pill #}
+        <div
+          class="inline-flex items-center gap-3 px-4 py-2 glass-deep rounded-full mb-8 opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]"
+        >
+          <span class="flex gap-0.5 text-yellow-400 text-xs">★★★★★</span>
+          <span class="w-px h-3 bg-white/8"></span>
+          <span class="text-primary-300/80 text-xs font-semibold tracking-wide"
+            >4.6 · 1,900+ Reviews</span
+          >
+          <span class="w-px h-3 bg-white/8"></span>
+          <span class="text-green-400/80 text-xs font-semibold"
+            ><i class="fa-solid fa-check-circle mr-1"></i>Since 2003</span
+          >
+        </div>
+
+        {# Subtitle #}
+        <div
+          class="text-xs sm:text-sm text-primary-300/40 tracking-[.35em] uppercase font-semibold mb-4 opacity-0 animate-[fadeIn_0.8s_ease-out_0.4s_forwards]"
+        >
+          <span
+            class="inline-block bg-primary-500/10 px-3 py-1 rounded-full text-primary-400/60"
+            >Chào mừng · 欢迎 · Welcome</span
+          >
+        </div>
+
+        {# Main heading with clip reveal animation #}
+        <h1
+          class="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] font-serif font-black text-white leading-[0.93] mb-6"
+        >
+          <span class="block overflow-hidden"
+            ><span class="block clip-reveal clip-reveal-delay-1"
+              >Where Tradition</span
+            ></span
+          >
+          <span class="block overflow-hidden mt-1"
+            ><span class="block clip-reveal clip-reveal-delay-2"
+              >Meets<span class="gradient-text-warm animate-gradient">
+                Flavor</span
+              ></span
+            ></span
+          >
+        </h1>
+
+        <p
+          class="text-base sm:text-lg text-warm-200/45 leading-relaxed max-w-xl mb-10 opacity-0 animate-[fadeIn_1s_ease-out_0.8s_forwards]"
+        >
+          Family-owned Vietnamese & Chinese comfort food in the heart of Salt
+          Lake City. Every bowl of pho, every crispy egg roll — crafted with
+          tradition, served with warmth.
+        </p>
+
+        {# CTA buttons #}
+        <div
+          class="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"
+        >
+          <a
+            href="/menu"
+            class="group relative px-9 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-primary-500/30 hover:shadow-primary-500/50 transition-all duration-500 hover:-translate-y-1 text-center overflow-hidden"
+          >
+            <span class="relative z-10 flex items-center gap-2">
+              Explore Our Menu
+              <i
+                class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"
+              ></i>
+            </span>
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+            ></div>
+          </a>
+          <a
+            href="/contact"
+            class="group px-9 py-4 glass-deep hover:bg-white/[0.08] rounded-2xl font-bold text-lg text-white transition-all duration-300 hover:-translate-y-1 text-center border border-white/10 hover:border-primary-400/30"
+          >
+            <i
+              class="fa-solid fa-location-dot mr-2 text-primary-400 group-hover:scale-110 transition-transform"
+            ></i>
+            Find Us
+          </a>
+        </div>
+
+        {# Tags #}
+        <div
+          class="flex flex-wrap gap-2.5 mt-10 opacity-0 animate-[fadeIn_1s_ease-out_1.2s_forwards]"
+        >
+          <span
+            class="px-3.5 py-2 glass-deep rounded-full text-white/40 text-xs font-medium border border-white/5"
+            ><i class="fa-solid fa-tag text-primary-400 mr-1.5 text-[10px]"></i
+            >$10–$20 pp</span
+          >
+          <span
+            class="px-3.5 py-2 glass-deep rounded-full text-white/40 text-xs font-medium border border-white/5"
+            ><i class="fa-solid fa-leaf text-green-400 mr-1.5 text-[10px]"></i
+            >Vegan & GF</span
+          >
+          <span
+            class="px-3.5 py-2 glass-deep rounded-full text-white/40 text-xs font-medium border border-white/5"
+            ><i
+              class="fa-solid fa-wine-glass text-blue-400 mr-1.5 text-[10px]"
+            ></i
+            >Beer & Wine</span
+          >
+        </div>
+      </div>
+
+      {# ── Visual column — decorative showcase ── #}
+      <div class="lg:col-span-5 hidden lg:flex justify-center">
+        <div class="relative perspective-[2000px]">
+          {# Main floating bowl #}
+          <div class="orb orb-delay-2" style="animation-duration: 7s">
+            <div
+              class="w-80 h-80 rounded-[3.5rem] bg-gradient-to-br from-primary-500/15 via-primary-600/10 to-primary-700/5 border border-white/8 backdrop-blur-sm flex items-center justify-center text-[10rem] shadow-2xl glow-amber"
+            >
+              🍜
             </div>
+          </div>
+          {# Floating decorative elements #}
+          <div
+            class="absolute -top-10 -right-6 w-24 h-24 rounded-2xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 backdrop-blur-xl border border-white/8 flex items-center justify-center text-4xl orb"
+            style="animation-duration: 6s"
+          >
+            🥟
+          </div>
+          <div
+            class="absolute -bottom-8 -left-6 w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500/10 to-green-600/5 backdrop-blur-xl border border-white/8 flex items-center justify-center text-3xl orb orb-delay-1"
+            style="animation-duration: 9s"
+          >
+            🥬
+          </div>
+          <div
+            class="absolute top-[40%] -right-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 backdrop-blur-xl border border-white/8 flex items-center justify-center text-2xl orb orb-delay-3"
+            style="animation-duration: 8s"
+          >
+            🦐
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <div class="text-sm text-primary-300/50 tracking-[.35em] uppercase font-medium mb-4 animate-fade-up" style="animation-delay: 0.1s">Chào mừng · 欢迎光临 · Welcome</div>
+  {# Scroll indicator #}
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]"
+  >
+    <span class="block text-white/12 text-[10px] tracking-[.6em] uppercase mb-3"
+      >Scroll</span
+    >
+    <div
+      class="w-5 h-9 rounded-full border-2 border-white/6 mx-auto relative overflow-hidden"
+    >
+      <div
+        class="w-1 h-2.5 bg-gradient-to-b from-primary-400/80 to-primary-500/80 rounded-full absolute left-1/2 -translate-x-1/2 animate-[bounce_2s_ease-in-out_infinite]"
+        style="top: 4px"
+      ></div>
+    </div>
+  </div>
+</section>
 
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-white leading-[1.03] mb-8 animate-fade-up" style="animation-delay: 0.2s">
-                Authentic<br>
-                <span class="gradient-text">Vietnamese &amp;<br>Chinese</span>
-                Comfort
-            </h1>
+{# ══════════════════════════════════════════════════════════════ #} {# 2.
+SCROLLING FOOD MARQUEE — Cinematic Ticker #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="relative py-8 bg-warm-950/95 border-t border-b border-white/5 overflow-hidden"
+>
+  <div class="flex whitespace-nowrap animate-marquee">
+    {% set ticker_items = [ '🥟 Egg Rolls', '🍜 Beef Pho', '🦐 Walnut Shrimp',
+    '🥟 Potstickers', '🍜 Chicken Pho', '🥬 Fresh Spring Rolls', '🥡 Kung Pao
+    Chicken', '🍹 Vietnamese Coffee', '🥟 Cream Cheese Wontons', '🍜 Shaking
+    Beef', '🥬 Buddha\'s Delight', '🥡 Sweet & Sour Pork', '🍜 Wonton Soup', '🥟
+    Egg Rolls', '🍜 Beef Pho', '🦐 Walnut Shrimp', '🥟 Potstickers', '🍜 Chicken
+    Pho', '🥬 Fresh Spring Rolls', '🥡 Kung Pao Chicken', '🍹 Vietnamese
+    Coffee', '🥟 Cream Cheese Wontons', '🍜 Shaking Beef', '🥬 Buddha\'s
+    Delight', '🥡 Sweet & Sour Pork', '🍜 Wonton Soup' ] %} {% for item in
+    ticker_items %}
+    <span
+      class="inline-flex items-center gap-3 mx-8 text-warm-300/40 text-sm font-medium tracking-wide"
+    >
+      <span>{{ item }}</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-primary-500/30"></span>
+    </span>
+    {% endfor %}
+  </div>
+</section>
 
-            <p class="text-lg text-warm-200/60 leading-relaxed mb-10 max-w-lg animate-fade-up" style="animation-delay: 0.4s">
-                A Salt Lake City institution since 2003. Generous portions of pho, walnut shrimp &amp; crispy egg rolls — served with warmth in a family-friendly atmosphere.
+{# ══════════════════════════════════════════════════════════════ #} {# 3.
+SIGNATURE DISHES — Cinematic 3D Card Showcase #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 bg-white relative overflow-hidden">
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary-50/50 rounded-full blur-[150px]"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-amber-50/30 rounded-full blur-[120px]"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >Signature Dishes</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-warm-900 leading-[1.04]"
+      >
+        What We're<br class="sm:hidden" />
+        <span class="gradient-text-warm">Known For</span>
+      </h2>
+    </div>
+
+    {# Featured card — full width #}
+    <div class="tilt-card reveal mb-6">
+      <div
+        class="group relative bg-gradient-to-br from-warm-50 to-white rounded-3xl overflow-hidden shadow-xl shadow-warm-900/[0.04] border border-warm-100/30"
+      >
+        <div class="flex flex-col lg:flex-row">
+          <div class="relative overflow-hidden lg:w-[55%] h-72 lg:h-[420px]">
+            <img
+              src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=900&q=85"
+              alt="Beef Pho"
+              class="img-zoom w-full h-full object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-warm-950/90 via-warm-950/30 to-transparent"
+            ></div>
+            <div class="absolute top-5 left-5 flex gap-2 z-10">
+              <span
+                class="px-4 py-1.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-[11px] font-extrabold rounded-full shadow-xl tracking-wide"
+                >👑 SIGNATURE</span
+              >
+              <span
+                class="px-4 py-1.5 bg-white/20 backdrop-blur-md text-white text-[11px] font-bold rounded-full shadow-xl border border-white/10"
+                >Most Ordered</span
+              >
+            </div>
+            <div class="absolute bottom-5 left-5 right-5 lg:hidden">
+              <div class="flex gap-0.5 text-yellow-400 text-xs mb-1">★★★★★</div>
+              <h3 class="font-serif font-bold text-2xl text-white">Beef Pho</h3>
+            </div>
+          </div>
+          <div class="flex-1 p-8 lg:p-10 flex flex-col justify-center">
+            <div class="flex gap-0.5 text-yellow-400 text-xs mb-3">★★★★★</div>
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3
+                class="font-serif font-black text-3xl lg:text-4xl text-warm-900"
+              >
+                Beef Pho
+              </h3>
+              <span
+                class="font-serif font-extrabold text-2xl lg:text-3xl gradient-text-warm whitespace-nowrap"
+                >$12.95</span
+              >
+            </div>
+            <p class="text-warm-500 leading-relaxed mb-5">
+              Rich 12-hour bone broth, silky rice noodles, rare sliced beef,
+              tender brisket & a bouquet of fresh herbs. Naturally gluten-free —
+              our most beloved bowl.
             </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay: 0.6s">
-                <a href="/menu" class="group px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-semibold text-lg text-white shadow-2xl shadow-primary-500/25 transition-all duration-300 hover:-translate-y-0.5 text-center">
-                    Explore Our Menu
-                    <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform inline-block"></i>
-                </a>
-                <a href="/contact" class="px-8 py-4 border-2 border-white/15 hover:border-white/30 rounded-2xl font-semibold text-lg text-white transition-all duration-300 text-center hover:bg-white/5">
-                    Hours &amp; Location
-                </a>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full border border-green-200"
+                >🌾 Gluten-Free</span
+              >
+              <span
+                class="px-3 py-1 bg-primary-50 text-primary-700 text-[10px] font-bold rounded-full border border-primary-200"
+                >🔥 1,900+ Reviews</span
+              >
+              <span
+                class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-full border border-amber-200"
+                >🥩 Protein-Rich</span
+              >
             </div>
-
-            <div class="flex flex-wrap gap-3 mt-10 animate-fade-up" style="animation-delay: 0.8s">
-                <span class="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/60 text-sm border border-white/8"><i class="fa-solid fa-tag text-primary-400 mr-1.5"></i>$10–$20 pp</span>
-                <span class="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/60 text-sm border border-white/8"><i class="fa-solid fa-leaf text-green-400 mr-1.5"></i>Vegan &amp; GF</span>
-                <span class="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/60 text-sm border border-white/8"><i class="fa-solid fa-wine-glass text-blue-400 mr-1.5"></i>Beer &amp; Wine</span>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-        <span class="block text-white/25 text-[10px] tracking-[.4em] uppercase text-center mb-2">Scroll</span>
-        <div class="w-4 h-7 rounded-full border-2 border-white/10 mx-auto flex justify-center"><div class="w-1 h-2 bg-primary-400/60 rounded-full mt-1 animate-bounce"></div></div>
+    {# Secondary cards grid #}
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {# Card: Walnut Shrimp #}
+      <div
+        class="group relative bg-gradient-to-br from-warm-50 to-white rounded-3xl overflow-hidden shadow-xl shadow-warm-900/[0.04] border border-warm-100/30 card-hover reveal"
+        style="transition-delay: 0.1s"
+      >
+        <div class="relative overflow-hidden h-56">
+          <img
+            src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=85"
+            alt="Walnut Shrimp"
+            class="img-zoom w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-warm-950/90 via-transparent to-transparent"
+          ></div>
+          <span
+            class="absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r from-red-500 to-red-600 text-white text-[11px] font-extrabold rounded-full shadow-xl z-10"
+            >🔥 BESTSELLER</span
+          >
+          <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+            <div class="flex gap-0.5 text-yellow-400 text-xs mb-1">★★★★★</div>
+            <h3 class="font-serif font-extrabold text-xl">Walnut Shrimp</h3>
+            <span class="font-serif font-bold text-lg text-primary-300"
+              >$15.95</span
+            >
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="text-warm-500 text-sm leading-relaxed">
+            Crispy honey-glazed jumbo shrimp with candied walnuts — sweet,
+            savory, unforgettable.
+          </p>
+        </div>
+      </div>
+
+      {# Card: Egg Rolls #}
+      <div
+        class="group relative bg-gradient-to-br from-warm-50 to-white rounded-3xl overflow-hidden shadow-xl shadow-warm-900/[0.04] border border-warm-100/30 card-hover reveal"
+        style="transition-delay: 0.15s"
+      >
+        <div class="relative overflow-hidden h-56">
+          <img
+            src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&q=85"
+            alt="Egg Rolls"
+            class="img-zoom w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-warm-950/90 via-transparent to-transparent"
+          ></div>
+          <span
+            class="absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[11px] font-extrabold rounded-full shadow-xl z-10"
+            >⭐ POPULAR</span
+          >
+          <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+            <div class="flex gap-0.5 text-yellow-400 text-xs mb-1">★★★★★</div>
+            <h3 class="font-serif font-extrabold text-xl">Pork Egg Rolls</h3>
+            <span class="font-serif font-bold text-lg text-primary-300"
+              >$7.95</span
+            >
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="text-warm-500 text-sm leading-relaxed">
+            Golden-fried pork & veggie rolls served with house-made nuoc cham
+            dipping sauce.
+          </p>
+        </div>
+      </div>
+
+      {# Card: Shaking Beef #}
+      <div
+        class="group relative bg-gradient-to-br from-warm-50 to-white rounded-3xl overflow-hidden shadow-xl shadow-warm-900/[0.04] border border-warm-100/30 card-hover reveal"
+        style="transition-delay: 0.2s"
+      >
+        <div class="relative overflow-hidden h-56">
+          <img
+            src="https://images.unsplash.com/photo-1604909052743-94e838986d24?w=600&q=85"
+            alt="Shaking Beef"
+            class="img-zoom w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-warm-950/90 via-transparent to-transparent"
+          ></div>
+          <span
+            class="absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[11px] font-extrabold rounded-full shadow-xl z-10"
+            >🔥 BESTSELLER</span
+          >
+          <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+            <div class="flex gap-0.5 text-yellow-400 text-xs mb-1">★★★★★</div>
+            <h3 class="font-serif font-extrabold text-xl">Shaking Beef</h3>
+            <span class="font-serif font-bold text-lg text-primary-300"
+              >$16.95</span
+            >
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="text-warm-500 text-sm leading-relaxed">
+            Tender cubed filet mignon wok-tossed with garlic, black pepper &
+            tangy lime sauce.
+          </p>
+        </div>
+      </div>
     </div>
+
+    <div class="text-center mt-12 reveal">
+      <a
+        href="/menu"
+        class="group inline-flex items-center gap-3 px-8 py-3.5 border-2 border-warm-200 hover:border-primary-300 text-warm-700 hover:text-primary-600 rounded-2xl font-bold transition-all duration-300 hover:bg-primary-50/40 hover:-translate-y-0.5"
+      >
+        View All 50+ Dishes
+        <i
+          class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1.5 transition-transform"
+        ></i>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- Stats -->
-<section class="relative z-20 -mt-12 pb-0">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="bg-white rounded-2xl shadow-xl shadow-warm-900/5 p-6 text-center border border-warm-100/50 reveal">
-                <div class="text-[28px] font-serif font-bold text-warm-900">23<span class="text-primary-500">+</span></div>
-                <div class="text-xs text-warm-400 mt-1 font-semibold tracking-wider uppercase">Years</div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-xl shadow-warm-900/5 p-6 text-center border border-warm-100/50 reveal" style="transition-delay: 0.1s">
-                <div class="text-[28px] font-serif font-bold text-warm-900">50<span class="text-primary-500">+</span></div>
-                <div class="text-xs text-warm-400 mt-1 font-semibold tracking-wider uppercase">Menu Items</div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-xl shadow-warm-900/5 p-6 text-center border border-warm-100/50 reveal" style="transition-delay: 0.2s">
-                <div class="text-[28px] font-serif font-bold text-warm-900">4.6 <i class="fa-solid fa-star text-yellow-500 text-sm"></i></div>
-                <div class="text-xs text-warm-400 mt-1 font-semibold tracking-wider uppercase">Rating</div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-xl shadow-warm-900/5 p-6 text-center border border-warm-100/50 reveal" style="transition-delay: 0.3s">
-                <div class="text-[28px] font-serif font-bold text-warm-900">1.9<span class="text-primary-500">k</span></div>
-                <div class="text-xs text-warm-400 mt-1 font-semibold tracking-wider uppercase">Reviews</div>
-            </div>
+{# ══════════════════════════════════════════════════════════════ #} {# 4. STATS
+— Cinematic Animated Counter Row #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="relative py-20 md:py-28 bg-warm-950 overflow-hidden">
+  <div class="absolute inset-0 particle-grid opacity-30"></div>
+  <div
+    class="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary-600/8 rounded-full blur-[120px]"
+  ></div>
+  <div
+    class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-600/6 rounded-full blur-[100px]"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {% set stats = [ {'num': '23', 'suf': '+', 'label': 'Years Serving SLC',
+      'icon': 'fa-calendar-heart'}, {'num': '50', 'suf': '+', 'label': 'Menu
+      Items', 'icon': 'fa-utensils'}, {'num': '4.6', 'suf': '★', 'label':
+      'Google Rating', 'icon': 'fa-star'}, {'num': '1.9', 'suf': 'k', 'label':
+      'Happy Reviews', 'icon': 'fa-heart'} ] %} {% for s in stats %}
+      <div
+        class="group text-center reveal cursor-default"
+        style="transition-delay: {{ loop.index0 * 0.1 }}s"
+      >
+        <div
+          class="relative inline-flex items-center justify-center w-16 h-16 mb-5"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-primary-700/10 rounded-2xl group-hover:scale-110 transition-transform duration-500"
+          ></div>
+          <div
+            class="absolute inset-0 rounded-2xl border border-white/5 group-hover:border-primary-500/30 transition-colors duration-500"
+          ></div>
+          <i
+            class="fa-solid {{ s.icon }} text-primary-400/70 text-xl relative z-10 group-hover:text-primary-300 transition-colors duration-300"
+          ></i>
         </div>
+        <div
+          class="text-4xl md:text-5xl font-serif font-black text-white leading-none mb-2"
+        >
+          <span class="counter-value" data-target="{{ s.num }}">0</span
+          ><span class="text-primary-400 text-2xl md:text-3xl align-super"
+            >{{ s.suf }}</span
+          >
+        </div>
+        <div
+          class="text-xs text-warm-400/60 font-semibold tracking-[0.15em] uppercase"
+        >
+          {{ s.label }}
+        </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
-<!-- Signature Dishes -->
-<section class="py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">Signature Dishes</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">What We're Known For</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="img-zoom-wrap group bg-white rounded-3xl overflow-hidden shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal">
-                <div class="relative overflow-hidden h-64">
-                    <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=85" alt="Beef Pho" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-warm-950/80 via-transparent to-transparent"></div>
-                    <span class="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-white text-xs font-bold rounded-full shadow-lg">Signature</span>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <div class="flex gap-0.5 text-yellow-400 text-xs mb-1.5">★★★★★</div>
-                        <h3 class="font-serif font-bold text-2xl">Beef Pho</h3>
-                        <span class="text-primary-300 font-semibold text-lg">$12.95</span>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-warm-500 text-sm leading-relaxed">Rich 12-hour bone broth, rice noodles, rare sliced beef, brisket &amp; fresh herbs. Gluten-free.</p>
-                </div>
-            </div>
-            <div class="img-zoom-wrap group bg-white rounded-3xl overflow-hidden shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal" style="transition-delay: 0.1s">
-                <div class="relative overflow-hidden h-64">
-                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=85" alt="Walnut Shrimp" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-warm-950/80 via-transparent to-transparent"></div>
-                    <span class="absolute top-4 left-4 px-3 py-1.5 bg-red-500 text-white text-xs font-bold rounded-full shadow-lg">Bestseller</span>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <div class="flex gap-0.5 text-yellow-400 text-xs mb-1.5">★★★★★</div>
-                        <h3 class="font-serif font-bold text-2xl">Walnut Shrimp</h3>
-                        <span class="text-primary-300 font-semibold text-lg">$15.95</span>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-warm-500 text-sm leading-relaxed">Crispy honey-glazed jumbo shrimp with house-made candied walnuts — our most-ordered dish.</p>
-                </div>
-            </div>
-            <div class="img-zoom-wrap group bg-white rounded-3xl overflow-hidden shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal" style="transition-delay: 0.2s">
-                <div class="relative overflow-hidden h-64">
-                    <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&q=85" alt="Egg Rolls" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-warm-950/80 via-transparent to-transparent"></div>
-                    <span class="absolute top-4 left-4 px-3 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-full shadow-lg">Popular</span>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <div class="flex gap-0.5 text-yellow-400 text-xs mb-1.5">★★★★★</div>
-                        <h3 class="font-serif font-bold text-2xl">Pork Egg Rolls</h3>
-                        <span class="text-primary-300 font-semibold text-lg">$7.95</span>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-warm-500 text-sm leading-relaxed">Crispy golden-fried pork &amp; vegetable rolls with our signature nuoc cham dipping sauce.</p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-12 reveal">
-            <a href="/menu" class="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-warm-200 hover:border-primary-300 text-warm-700 hover:text-primary-600 rounded-2xl font-semibold transition-all">
-                View Full Menu <i class="fa-solid fa-arrow-right text-sm"></i>
-            </a>
-        </div>
+{# ══════════════════════════════════════════════════════════════ #} {# 5.
+CHEF'S SPECIAL — Seasonal Features Showcase #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="py-24 md:py-36 relative overflow-hidden bg-gradient-to-br from-warm-50 via-white to-warm-50"
+>
+  <div
+    class="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-50/50 rounded-full blur-[130px] -translate-x-1/3 -translate-y-1/3"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-50/30 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >From the Kitchen</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-display font-black text-warm-900 leading-[1.04]"
+      >
+        Chef's <span class="gradient-text-warm">Special</span>
+      </h2>
+      <p class="text-warm-500 max-w-xl mx-auto text-base mt-5">
+        Seasonal creations crafted with the finest ingredients — available for a
+        limited time.
+      </p>
     </div>
+
+    <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+      {% set specials = [ { 'img':
+      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&q=85',
+      'name': 'Spicy Lemongrass Seafood Noodles', 'price': '$16.95', 'desc':
+      'Shrimp, squid & mussels wok-tossed in aromatic lemongrass chili broth
+      over chewy egg noodles.', 'tag': '🌶️ New', 'tagColor': 'from-red-500
+      to-red-600' }, { 'img':
+      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=85',
+      'name': 'Honey Glazed Walnut Shrimp', 'price': '$15.95', 'desc': 'Jumbo
+      shrimp wok-fried in a honey glaze, topped with candied walnuts & toasted
+      sesame.', 'tag': '👑 Signature', 'tagColor': 'from-primary-500
+      to-primary-600' }, { 'img':
+      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85',
+      'name': 'Buddha\'s Harvest Bowl', 'price': '$12.95', 'desc': 'Seasonal
+      vegetables, crispy tofu & jasmine rice tossed in a light ginger-soy
+      glaze.', 'tag': '🌱 Vegan', 'tagColor': 'from-green-500 to-emerald-600' }
+      ] %} {% for s in specials %}
+      <div
+        class="group relative rounded-3xl overflow-hidden shadow-xl shadow-warm-900/[0.04] reveal card-hover"
+        style="transition-delay:{{ loop.index0 * 0.1 }}s"
+      >
+        <div class="relative overflow-hidden h-56">
+          <img
+            src="{{ s.img }}"
+            alt="{{ s.name }}"
+            class="img-zoom w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-warm-950/90 via-transparent to-transparent"
+          ></div>
+          <span
+            class="absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r {{ s.tagColor }} text-white text-[11px] font-extrabold rounded-full shadow-xl z-10"
+            >{{ s.tag }}</span
+          >
+          <div class="absolute bottom-4 left-4 right-4 z-10">
+            <h3 class="font-display font-bold text-xl text-white mb-1">
+              {{ s.name }}
+            </h3>
+            <span class="font-display font-bold text-lg text-primary-300"
+              >{{ s.price }}</span
+            >
+          </div>
+        </div>
+        <div class="p-5 bg-white">
+          <p class="text-warm-500 text-sm leading-relaxed">{{ s.desc }}</p>
+          <div
+            class="mt-4 flex items-center gap-2 text-primary-600 text-xs font-semibold"
+          >
+            <span
+              class="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1"
+            >
+              Order now <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<!-- Why We're Different -->
-<section class="py-24 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">Why Choose Us</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">Why We're Different</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center p-10 rounded-3xl bg-cream border border-warm-100/30 card-hover reveal">
-                <div class="w-16 h-16 bg-primary-50 text-primary-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6">🥬</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Fresh Daily</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">We source the freshest herbs &amp; ingredients every morning. Our broths simmer for 12+ hours — never from a packet.</p>
-            </div>
-            <div class="text-center p-10 rounded-3xl bg-cream border border-warm-100/30 card-hover reveal" style="transition-delay: 0.1s">
-                <div class="w-16 h-16 bg-primary-50 text-primary-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6">👨‍🍳</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Family Recipes</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">Every dish follows traditional recipes passed down through generations. Taste the difference heritage makes.</p>
-            </div>
-            <div class="text-center p-10 rounded-3xl bg-cream border border-warm-100/30 card-hover reveal" style="transition-delay: 0.2s">
-                <div class="w-16 h-16 bg-primary-50 text-primary-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6">🤲</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Warm Hospitality</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">We treat every guest like family. Our welcoming atmosphere has earned us 1,900+ glowing reviews.</p>
-            </div>
-        </div>
-    </div>
-</section>
+{# ══════════════════════════════════════════════════════════════ #} {# 6. OUR
+STORY — Cinematic Split with Parallax Image Gallery #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 bg-white relative overflow-hidden">
+  <div
+    class="absolute top-0 right-0 w-[700px] h-[700px] bg-primary-50/60 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4"
+  ></div>
+  <div
+    class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-50/40 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4"
+  ></div>
 
-<!-- About -->
-<section class="py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="relative reveal">
-                <div class="rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85" alt="Restaurant interior" class="w-full aspect-[4/5] object-cover">
-                </div>
-                <div class="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-white text-lg"><i class="fa-solid fa-trophy"></i></div>
-                    <div><div class="text-xs text-warm-400 font-semibold tracking-wider uppercase">Award Winning</div><div class="font-serif font-bold text-warm-900">Best Pho in SLC</div></div>
-                </div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-14 lg:gap-20 items-center">
+      {# Image Gallery #}
+      <div class="lg:col-span-5 relative reveal-left">
+        <div class="relative">
+          {# Main image with 3D hover #}
+          <div
+            class="rounded-3xl overflow-hidden shadow-2xl shadow-warm-900/[0.08] rotate-1 hover:rotate-0 transition-all duration-700 group"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85"
+              alt="Restaurant interior"
+              class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-warm-950/40 via-transparent to-transparent"
+            ></div>
+          </div>
+          {# Floating badge #}
+          <div
+            class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl p-5 flex items-center gap-4 z-20 hover:-translate-y-1 transition-transform duration-300 cursor-default"
+          >
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center text-white text-xl shadow-lg shadow-primary-500/20"
+            >
+              <i class="fa-solid fa-trophy"></i>
             </div>
-            <div class="reveal" style="transition-delay: 0.15s">
-                <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">Our Story</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-6 leading-tight">Where Vietnam Meets <span class="gradient-text">Chinese Comfort</span></h2>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mb-8"></div>
-                <p class="text-warm-600 leading-relaxed mb-5 text-lg">For over two decades, Mi La-Cai has been a cherished destination on State Street — bringing together Vietnam's bright, herbaceous flavors and the rich, satisfying warmth of Chinese comfort food.</p>
-                <p class="text-warm-500 leading-relaxed mb-8">Every bowl of pho is simmered for hours. Every egg roll is hand-rolled. Every dish reflects our commitment to authentic recipes, fresh ingredients, and genuine hospitality.</p>
-                <div class="grid grid-cols-2 gap-3 mb-8">
-                    <div class="flex items-center gap-3"><span class="w-9 h-9 bg-green-50 text-green-600 rounded-lg flex items-center justify-center text-sm"><i class="fa-solid fa-leaf"></i></span><span class="text-sm font-semibold text-warm-800">Vegan Options</span></div>
-                    <div class="flex items-center gap-3"><span class="w-9 h-9 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-sm"><i class="fa-solid fa-wheat-awn-circle-exclamation"></i></span><span class="text-sm font-semibold text-warm-800">Gluten-Free</span></div>
-                    <div class="flex items-center gap-3"><span class="w-9 h-9 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-sm"><i class="fa-solid fa-wine-glass"></i></span><span class="text-sm font-semibold text-warm-800">Beer &amp; Wine</span></div>
-                    <div class="flex items-center gap-3"><span class="w-9 h-9 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-sm"><i class="fa-solid fa-child"></i></span><span class="text-sm font-semibold text-warm-800">Family Friendly</span></div>
-                </div>
-                <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-warm-900 text-white rounded-xl font-semibold hover:bg-warm-800 transition-all shadow-lg shadow-warm-900/10">
-                    <i class="fa-solid fa-location-dot text-sm"></i> Find Us on State Street
-                </a>
+            <div>
+              <div
+                class="text-[10px] text-warm-400 font-bold tracking-widest uppercase"
+              >
+                Award Winning
+              </div>
+              <div class="font-serif font-extrabold text-warm-900 text-lg">
+                Best Pho in SLC
+              </div>
+              <div class="text-[11px] text-warm-400 font-medium mt-0.5">
+                Since 2003
+              </div>
             </div>
+          </div>
+          {# Decorative dots #}
+          <div
+            class="absolute -top-8 -left-8 w-32 h-32 opacity-10"
+            style="
+              background-image: radial-gradient(
+                circle,
+                #c57538 1.5px,
+                transparent 0
+              );
+              background-size: 12px 12px;
+            "
+          ></div>
+          {# Secondary floating image #}
+          <div
+            class="absolute -bottom-10 -left-10 w-32 h-32 rounded-2xl overflow-hidden shadow-xl border-4 border-white rotate-6 hidden md:block"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&q=85"
+              alt="Food"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
-    </div>
-</section>
-
-<!-- Dining Guide -->
-<section class="py-24 md:py-32 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">Dining Guide</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">The Mi La-Cai Experience</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
+      </div>
+      {# Text side #}
+      <div class="lg:col-span-7 reveal-right" style="transition-delay: 0.15s">
+        <span
+          class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+          >Our Story</span
+        >
+        <h2
+          class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-warm-900 leading-[1.04] mb-6"
+        >
+          Where Vietnam Meets<br class="hidden sm:block" />
+          <span class="gradient-text-warm">Chinese Comfort</span>
+        </h2>
+        <div
+          class="w-24 h-1.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mb-8"
+        ></div>
+        <p class="text-warm-600 leading-relaxed mb-6 text-base sm:text-lg">
+          For over two decades, Mi La-Cai has been a cherished destination on
+          State Street — bringing together Vietnam's bright, herbaceous flavors
+          and the rich, satisfying warmth of Chinese comfort food.
+        </p>
+        <p class="text-warm-500 leading-relaxed mb-8 text-sm sm:text-base">
+          Every bowl of pho is simmered for hours. Every egg roll is
+          hand-rolled. Every dish reflects our commitment to authentic recipes,
+          fresh ingredients, and genuine hospitality.
+        </p>
+        {# Feature grid #}
+        <div class="grid grid-cols-2 gap-4 mb-10">
+          {% set feats = [ {'icon': 'fa-leaf', 'color': 'green', 'txt': 'Vegan
+          Options'}, {'icon': 'fa-wheat-awn-circle-exclamation', 'color':
+          'amber', 'txt': 'Gluten-Free'}, {'icon': 'fa-wine-glass', 'color':
+          'blue', 'txt': 'Beer & Wine'}, {'icon': 'fa-child', 'color': 'purple',
+          'txt': 'Family Friendly'} ] %} {% for f in feats %}
+          <div
+            class="flex items-center gap-3 group cursor-default p-3 rounded-xl hover:bg-warm-50 transition-colors duration-300"
+          >
+            <span
+              class="w-11 h-11 bg-{{ f.color }}-50 text-{{ f.color }}-600 rounded-xl flex items-center justify-center text-sm group-hover:scale-110 transition-transform duration-300 shadow-sm"
+              ><i class="fa-solid {{ f.icon }}"></i
+            ></span>
+            <span class="text-sm font-bold text-warm-800">{{ f.txt }}</span>
+          </div>
+          {% endfor %}
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center reveal">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-2xl flex items-center justify-center text-xl font-serif font-bold mx-auto mb-5 shadow-lg shadow-primary-500/20">1</div>
-                <div class="text-3xl mb-3">🪑</div>
-                <h3 class="font-serif font-bold text-lg text-warm-900 mb-1.5">Find Your Seat</h3>
-                <p class="text-warm-400 text-xs leading-relaxed">Walk in or call ahead — casual seating for families &amp; friends.</p>
-            </div>
-            <div class="text-center reveal" style="transition-delay: 0.1s">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-2xl flex items-center justify-center text-xl font-serif font-bold mx-auto mb-5 shadow-lg shadow-primary-500/20">2</div>
-                <div class="text-3xl mb-3">📋</div>
-                <h3 class="font-serif font-bold text-lg text-warm-900 mb-1.5">Browse &amp; Order</h3>
-                <p class="text-warm-400 text-xs leading-relaxed">Pick from 50+ dishes — vegan, GF &amp; kids' options marked.</p>
-            </div>
-            <div class="text-center reveal" style="transition-delay: 0.2s">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-2xl flex items-center justify-center text-xl font-serif font-bold mx-auto mb-5 shadow-lg shadow-primary-500/20">3</div>
-                <div class="text-3xl mb-3">🍜</div>
-                <h3 class="font-serif font-bold text-lg text-warm-900 mb-1.5">Savor &amp; Enjoy</h3>
-                <p class="text-warm-400 text-xs leading-relaxed">Dig into generous portions — add sriracha &amp; hoisin to taste!</p>
-            </div>
-            <div class="text-center reveal" style="transition-delay: 0.3s">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-2xl flex items-center justify-center text-xl font-serif font-bold mx-auto mb-5 shadow-lg shadow-primary-500/20">4</div>
-                <div class="text-3xl mb-3">😊</div>
-                <h3 class="font-serif font-bold text-lg text-warm-900 mb-1.5">Come Back Soon</h3>
-                <p class="text-warm-400 text-xs leading-relaxed">Leave with a full belly — your favorite dish awaits next time!</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Values -->
-<section class="py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">What We Stand For</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">Our Values</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-3xl p-10 shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal">
-                <div class="text-4xl mb-5">🎯</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Our Mission</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">To bring authentic Vietnamese &amp; Chinese flavors to Salt Lake City — one bowl of pho and one smile at a time.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-10 shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal" style="transition-delay: 0.1s">
-                <div class="text-4xl mb-5">👁️</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Our Vision</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">To be Salt Lake City's most loved destination for Vietnamese &amp; Chinese comfort food — where every guest feels at home.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-10 shadow-lg shadow-warm-900/3 border border-warm-100/30 card-hover reveal" style="transition-delay: 0.2s">
-                <div class="text-4xl mb-5">🤝</div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Our Promise</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">Fresh ingredients daily. Authentic family recipes. Warm, welcoming service. Every single time.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="py-24 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">Guest Reviews</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">What Our Guests Say</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-cream rounded-3xl p-8 card-hover reveal border border-warm-100/30">
-                <div class="flex gap-0.5 text-yellow-500 mb-4 text-sm">★★★★★</div>
-                <p class="text-warm-600 leading-relaxed mb-6 italic text-sm">"Best pho in SLC hands down. The broth is incredibly rich — you can tell it's been simmering for hours. Egg rolls are perfectly crispy too!"</p>
-                <div class="flex items-center gap-3 border-t border-warm-200 pt-4">
-                    <div class="w-9 h-9 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-bold text-xs">S</div>
-                    <div><div class="font-semibold text-warm-900 text-sm">Sarah M.</div><div class="text-xs text-warm-400">Google Review</div></div>
-                </div>
-            </div>
-            <div class="bg-cream rounded-3xl p-8 card-hover reveal border border-warm-100/30" style="transition-delay: 0.1s">
-                <div class="flex gap-0.5 text-yellow-500 mb-4 text-sm">★★★★★</div>
-                <p class="text-warm-600 leading-relaxed mb-6 italic text-sm">"The walnut shrimp is incredible — crispy, sweet, perfectly balanced. Great family atmosphere. We come every week!"</p>
-                <div class="flex items-center gap-3 border-t border-warm-200 pt-4">
-                    <div class="w-9 h-9 bg-gradient-to-br from-warm-500 to-warm-600 rounded-full flex items-center justify-center text-white font-bold text-xs">D</div>
-                    <div><div class="font-semibold text-warm-900 text-sm">David L.</div><div class="text-xs text-warm-400">Google Review</div></div>
-                </div>
-            </div>
-            <div class="bg-cream rounded-3xl p-8 card-hover reveal border border-warm-100/30" style="transition-delay: 0.2s">
-                <div class="flex gap-0.5 text-yellow-500 mb-4 text-sm">★★★★★</div>
-                <p class="text-warm-600 leading-relaxed mb-6 italic text-sm">"As someone gluten-free, finding good Asian food is tough — Mi La-Cai has so many options! Vegetable pho is my go-to."</p>
-                <div class="flex items-center gap-3 border-t border-warm-200 pt-4">
-                    <div class="w-9 h-9 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-xs">E</div>
-                    <div><div class="font-semibold text-warm-900 text-sm">Emily R.</div><div class="text-xs text-warm-400">Google Review</div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Service Options -->
-<section class="py-24 md:py-32">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="text-primary-500 font-semibold text-xs tracking-[.3em] uppercase">How to Enjoy</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-bold text-warm-900 mt-3 mb-5">Ways to Dine</h2>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center reveal">
-                <div class="w-20 h-20 bg-primary-50 text-primary-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6"><i class="fa-solid fa-chair"></i></div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Dine-In</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">Relax in our warm, casual atmosphere. Perfect for family dinners and catching up with friends.</p>
-            </div>
-            <div class="text-center reveal" style="transition-delay: 0.1s">
-                <div class="w-20 h-20 bg-primary-50 text-primary-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6"><i class="fa-solid fa-bag-shopping"></i></div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Takeout</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">Order ahead and pick up at the counter. All your favorites packed fresh and ready to go.</p>
-            </div>
-            <div class="text-center reveal" style="transition-delay: 0.2s">
-                <div class="w-20 h-20 bg-primary-50 text-primary-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6"><i class="fa-solid fa-car-side"></i></div>
-                <h3 class="font-serif font-bold text-xl text-warm-900 mb-3">Curbside Pickup</h3>
-                <p class="text-warm-500 text-sm leading-relaxed">Call ahead and we'll bring your order to your car. Quick, convenient &amp; contactless.</p>
-            </div>
-        </div>
-        <div class="flex justify-center mt-10 reveal">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-50 text-red-500 rounded-full text-sm font-semibold border border-red-100"><i class="fa-solid fa-circle-xmark text-xs"></i> No delivery available</span>
-        </div>
-    </div>
-</section>
-
-<!-- Events CTA -->
-<section class="py-16 bg-warm-900 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 20px 20px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-    <div class="max-w-3xl mx-auto px-6 relative z-10 reveal">
-        <span class="text-primary-400 text-xs tracking-[.3em] uppercase font-semibold">Catering &amp; Events</span>
-        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mt-3 mb-4">Hosting an Event?</h2>
-        <p class="text-warm-400 max-w-lg mx-auto mb-8">We offer large takeout orders for gatherings, parties &amp; office events. Let us bring authentic Vietnamese &amp; Chinese flavors to your celebration.</p>
-        <a href="tel:+18013223590" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-semibold text-lg text-white shadow-2xl shadow-primary-500/25 transition-all hover:-translate-y-0.5">
-            <i class="fa-solid fa-phone"></i> Call for Catering
+        <a
+          href="/contact"
+          class="group inline-flex items-center gap-3 px-8 py-4 bg-warm-900 text-white rounded-2xl font-bold hover:bg-warm-800 transition-all shadow-xl shadow-warm-900/[0.08] hover:shadow-2xl hover:shadow-warm-900/[0.12] hover:-translate-y-1"
+        >
+          <i
+            class="fa-solid fa-location-dot group-hover:scale-110 transition-transform"
+          ></i>
+          Find Us on State Street
+          <i
+            class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1.5 transition-transform"
+          ></i>
         </a>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Final CTA -->
-<section class="relative py-28 md:py-36 overflow-hidden">
-    <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=1920&q=85" alt="Vietnamese coffee" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-r from-warm-950/95 via-warm-950/80 to-warm-950/70"></div>
+{# ══════════════════════════════════════════════════════════════ #} {# 6. WHY
+WE'RE DIFFERENT — Dark Ambient Cards #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="py-24 md:py-36 relative overflow-hidden bg-gradient-to-b from-warm-950 to-warm-900"
+>
+  <div class="absolute inset-0 particle-grid opacity-[0.04]"></div>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary-500/[0.02] rounded-full blur-[150px]"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-white/5 text-primary-300 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-white/5"
+        >Why Choose Us</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white leading-[1.04]"
+      >
+        Why We're <span class="gradient-text-warm">Different</span>
+      </h2>
+      <p class="text-warm-400/60 max-w-xl mx-auto text-base mt-5">
+        Three generations of passion, poured into every dish.
+      </p>
     </div>
-    <div class="max-w-2xl mx-auto px-6 text-center relative z-10 reveal">
-        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-5">Ready for the Best Pho<br>in Salt Lake City?</h2>
-        <p class="text-warm-300/60 text-lg mb-10">Open six days a week on State Street — lunch &amp; dinner.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/menu" class="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-semibold text-lg text-white shadow-2xl shadow-primary-500/25 transition-all hover:-translate-y-0.5">
-                Browse Our Menu <i class="fa-solid fa-arrow-right ml-2"></i>
-            </a>
-            <a href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111" target="_blank" rel="noopener" class="px-8 py-4 border-2 border-white/15 hover:border-white/30 rounded-2xl font-semibold text-lg text-white transition-all hover:bg-white/5">
-                <i class="fa-solid fa-map-pin mr-2"></i> Get Directions
-            </a>
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+      {% set diffs = [ {'emoji': '🥬', 'gradient': 'from-emerald-600
+      to-green-800', 'title': 'Fresh Daily', 'desc': 'We source the freshest
+      herbs & ingredients every morning. Our broths simmer for 12+ hours — never
+      from a packet.', 'icon': 'fa-seedling'}, {'emoji': '👨‍🍳', 'gradient':
+      'from-amber-600 to-orange-800', 'title': 'Family Recipes', 'desc': 'Every
+      dish follows traditional recipes passed down through generations. Taste
+      the difference heritage makes.', 'icon': 'fa-book-open'}, {'emoji': '🤲',
+      'gradient': 'from-rose-600 to-red-800', 'title': 'Warm Hospitality',
+      'desc': 'We treat every guest like family. Our welcoming atmosphere has
+      earned us 1,900+ glowing reviews over 23 years.', 'icon': 'fa-heart'} ] %}
+      {% for d in diffs %}
+      <div
+        class="group relative rounded-3xl overflow-hidden reveal card-hover"
+        style="transition-delay:{{ loop.index0 * 0.1 }}s"
+      >
+        {# Card background with gradient overlay #}
+        <div
+          class="absolute inset-0 bg-white/[0.03] border border-white/[0.06] rounded-3xl group-hover:border-primary-500/20 transition-colors duration-500"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div class="relative z-10 p-8 lg:p-10">
+          {# Icon container #}
+          <div class="relative inline-block mb-6">
+            <div
+              class="w-16 h-16 bg-gradient-to-br {{ d.gradient }} rounded-2xl flex items-center justify-center text-3xl shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+            >
+              {{ d.emoji }}
+            </div>
+            <div
+              class="absolute -top-1 -right-1 w-5 h-5 bg-white/10 rounded-full blur-sm"
+            ></div>
+          </div>
+          <h3 class="font-serif font-extrabold text-2xl text-white mb-4">
+            {{ d.title }}
+          </h3>
+          <p class="text-warm-400/70 text-sm leading-relaxed">{{ d.desc }}</p>
+          <div
+            class="mt-6 flex items-center gap-2 text-primary-400/50 text-xs font-semibold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <i class="fa-solid {{ d.icon }}"></i>
+            <span>Learn more</span>
+          </div>
         </div>
+        {# Bottom accent line #}
+        <div
+          class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary-500/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"
+        ></div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
+{# ══════════════════════════════════════════════════════════════ #} {# 7. MENU
+CATEGORIES — Interactive Glass Grid #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 bg-white relative overflow-hidden">
+  <div
+    class="absolute top-0 left-0 w-[500px] h-[500px] bg-warm-50/80 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary-50/40 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >Our Menu</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-warm-900 leading-[1.04]"
+      >
+        Something for <span class="gradient-text-warm">Everyone</span>
+      </h2>
+      <p class="text-warm-500 max-w-xl mx-auto text-base mt-5">
+        From steaming pho to crispy egg rolls — 50+ dishes spanning two rich
+        culinary traditions.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {% set cats = [ {'emoji': '🍜', 'name': 'Pho & Soups', 'count': '4',
+      'color': 'from-amber-500 to-orange-600'}, {'emoji': '🥟', 'name':
+      'Appetizers', 'count': '5', 'color': 'from-primary-500 to-primary-600'},
+      {'emoji': '🇻🇳', 'name': 'Vietnamese', 'count': '4', 'color': 'from-red-500
+      to-red-600'}, {'emoji': '🥡', 'name': 'Chinese', 'count': '5', 'color':
+      'from-blue-500 to-blue-600'}, {'emoji': '🥬', 'name': 'Vegetarian',
+      'count': '3', 'color': 'from-green-500 to-emerald-600'}, {'emoji': '🍹',
+      'name': 'Drinks', 'count': '5', 'color': 'from-purple-500 to-violet-600'}
+      ] %} {% for c in cats %}
+      <a
+        href="/menu"
+        class="group relative rounded-2xl overflow-hidden reveal card-hover"
+        style="transition-delay:{{ loop.index0 * 0.06 }}s"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-warm-50 to-white border border-warm-100/40 group-hover:border-transparent rounded-2xl transition-all duration-500"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-br {{ c.color }} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+        ></div>
+        <div class="relative z-10 p-6 text-center">
+          <div
+            class="text-4xl mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 inline-block"
+          >
+            {{ c.emoji }}
+          </div>
+          <div
+            class="font-bold text-warm-900 text-sm mb-1 group-hover:text-white transition-colors duration-300"
+          >
+            {{ c.name }}
+          </div>
+          <div
+            class="text-xs text-warm-400 font-medium group-hover:text-white/70 transition-colors duration-300"
+          >
+            {{ c.count }} items
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-12 reveal">
+      <a
+        href="/menu"
+        class="group inline-flex items-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5"
+      >
+        Browse Complete Menu
+        <i
+          class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1.5 transition-transform"
+        ></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 8. DID
+YOU KNOW? — Fun Facts with Animated Counter Strips #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="relative py-20 md:py-28 overflow-hidden bg-gradient-to-r from-warm-950 via-warm-950 to-warm-900"
+>
+  <div class="absolute inset-0 particle-grid opacity-[0.03]"></div>
+  <div
+    class="absolute top-0 left-1/3 w-[500px] h-[500px] bg-primary-600/8 rounded-full blur-[150px]"
+  ></div>
+  <div
+    class="absolute bottom-0 right-1/3 w-[400px] h-[400px] bg-amber-600/6 rounded-full blur-[120px]"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-14 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-white/5 text-primary-300 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-white/5"
+        >Did You Know?</span
+      >
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white leading-[1.04]"
+      >
+        Flavors with a <span class="gradient-text-warm">Story</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {% set facts = [ {'emoji': '⏳', 'title': '12+ Hours', 'desc': 'Our pho
+      broth simmers overnight for deep, complex flavor — never from a powder.',
+      'color': 'primary'}, {'emoji': '🥟', 'title': 'Hand-Rolled', 'desc':
+      'Every egg roll is individually wrapped by hand each morning, just like
+      grandma taught us.', 'color': 'amber'}, {'emoji': '🌿', 'title': 'Fresh
+      Herbs Daily', 'desc': 'We source Thai basil, mint & cilantro from local
+      farms every single morning.', 'color': 'green'}, {'emoji': '🧂', 'title':
+      'Secret Family Spice', 'desc': 'Our signature pho spice blend has been
+      passed down through three generations.', 'color': 'rose'} ] %} {% for f in
+      facts %}
+      <div
+        class="group relative rounded-2xl overflow-hidden reveal text-center p-6 lg:p-8"
+        style="transition-delay:{{ loop.index0 * 0.08 }}s"
+      >
+        <div
+          class="absolute inset-0 bg-white/[0.02] border border-white/[0.06] rounded-2xl group-hover:border-{{ f.color }}-500/20 transition-colors duration-500"
+        ></div>
+        <div class="relative z-10">
+          <div
+            class="text-4xl mb-4 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 inline-block"
+          >
+            {{ f.emoji }}
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">
+            {{ f.title }}
+          </h3>
+          <p class="text-warm-400/60 text-sm leading-relaxed">{{ f.desc }}</p>
+        </div>
+        <div
+          class="absolute bottom-0 left-[20%] right-[20%] h-px bg-gradient-to-r from-transparent via-{{ f.color }}-500/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"
+        ></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 9.
+DINING EXPERIENCE — Stepped Timeline with Glow #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="py-24 md:py-36 relative overflow-hidden bg-gradient-to-b from-warm-50 to-white"
+>
+  <div
+    class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-primary-50/40 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3"
+  ></div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >Dining Guide</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-warm-900 leading-[1.04]"
+      >
+        The Mi La-Cai<br class="sm:hidden" />
+        <span class="gradient-text-warm">Experience</span>
+      </h2>
+    </div>
+    <div class="relative">
+      {# Timeline line #}
+      <div
+        class="absolute top-24 left-1/2 -translate-x-1/2 w-px h-[calc(100%-6rem)] bg-gradient-to-b from-primary-300/30 via-primary-500/20 to-transparent hidden md:block"
+      ></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10">
+        {% set steps = [ {'num': '01', 'emoji': '🪑', 'title': 'Find Your Seat',
+        'desc': 'Walk in or call ahead — casual seating for families &
+        friends.'}, {'num': '02', 'emoji': '📋', 'title': 'Browse & Order',
+        'desc': 'Pick from 50+ dishes — dietary options clearly marked.'},
+        {'num': '03', 'emoji': '🍜', 'title': 'Savor & Enjoy', 'desc': 'Dig into
+        generous portions — add sriracha & hoisin!'}, {'num': '04', 'emoji':
+        '😊', 'title': 'Come Back Soon', 'desc': 'Leave with a full belly — your
+        favorite awaits next time.'} ] %} {% for s in steps %}
+        <div
+          class="text-center reveal group relative"
+          style="transition-delay:{{ loop.index0 * 0.1 }}s"
+        >
+          {# Step number with glow #}
+          <div class="relative inline-flex items-center justify-center mb-5">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-2xl flex items-center justify-center text-lg font-serif font-black mx-auto shadow-xl shadow-primary-500/20 group-hover:shadow-2xl group-hover:shadow-primary-500/40 group-hover:scale-110 transition-all duration-500 relative z-10"
+            >
+              {{ s.num }}
+            </div>
+            {% if loop.first %}
+            <div
+              class="absolute inset-0 rounded-2xl animate-ping-slow opacity-30"
+              style="
+                border: 2px solid rgba(197, 117, 56, 0.4);
+                animation-duration: 2s;
+              "
+            ></div>
+            {% endif %} {% if not loop.last %}
+            <div
+              class="hidden md:block absolute -right-[calc(50%+2rem)] top-1/2 w-[calc(100%-2rem)] h-px bg-gradient-to-r from-primary-300/30 to-transparent"
+            ></div>
+            {% endif %}
+          </div>
+          <div
+            class="text-4xl mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300"
+          >
+            {{ s.emoji }}
+          </div>
+          <h3 class="font-serif font-extrabold text-lg text-warm-900 mb-2">
+            {{ s.title }}
+          </h3>
+          <p
+            class="text-warm-400 text-xs leading-relaxed max-w-[180px] mx-auto"
+          >
+            {{ s.desc }}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 9.
+TESTIMONIALS — Cinematic Scrolling Quotes #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 relative overflow-hidden bg-warm-950">
+  <div class="absolute inset-0 particle-grid opacity-[0.03]"></div>
+  <div
+    class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary-600/8 rounded-full blur-[150px]"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-white/5 text-primary-300 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-white/5"
+        >Guest Reviews</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white leading-[1.04]"
+      >
+        What Our <span class="gradient-text-warm">Guests Say</span>
+      </h2>
+      <div class="flex items-center justify-center gap-3 mt-5">
+        <span class="flex gap-0.5 text-yellow-500 text-lg">★★★★★</span>
+        <span class="text-white font-bold text-lg">4.6</span>
+        <span class="text-warm-400/60">· 1,900+ reviews on Google</span>
+      </div>
+    </div>
+
+    {# Testimonial cards grid #}
+    <div class="grid md:grid-cols-3 gap-6">
+      {% set reviews = [ {'stars': '★★★★★', 'quote': '"Best pho in SLC hands
+      down. The broth is incredibly rich — you can tell it\'s been simmering for
+      hours. Egg rolls are perfectly crispy too!"', 'name': 'Sarah M.',
+      'initial': 'S', 'gradient': 'from-primary-500 to-primary-600'}, {'stars':
+      '★★★★★', 'quote': '"The walnut shrimp is incredible — crispy, sweet,
+      perfectly balanced. Great family atmosphere. We come every week!"',
+      'name': 'David L.', 'initial': 'D', 'gradient': 'from-amber-500
+      to-orange-600'}, {'stars': '★★★★★', 'quote': '"As someone gluten-free,
+      finding good Asian food is tough — Mi La-Cai has so many options!
+      Vegetable pho is my go-to."', 'name': 'Emily R.', 'initial': 'E',
+      'gradient': 'from-green-500 to-emerald-600'} ] %} {% for r in reviews %}
+      <div
+        class="group relative rounded-3xl overflow-hidden reveal"
+        style="transition-delay:{{ loop.index0 * 0.1 }}s"
+      >
+        <div
+          class="absolute inset-0 bg-white/[0.03] border border-white/[0.06] rounded-3xl group-hover:border-primary-500/20 transition-colors duration-500"
+        ></div>
+        <div class="relative z-10 p-8">
+          <div class="flex gap-0.5 text-yellow-500 mb-5 text-sm">
+            {{ r.stars }}
+          </div>
+          <p
+            class="text-warm-300/80 leading-relaxed mb-6 italic text-sm min-h-[100px]"
+          >
+            "{{ r.quote }}"
+          </p>
+          <div class="flex items-center gap-3 pt-5 border-t border-white/5">
+            <div
+              class="w-10 h-10 bg-gradient-to-br {{ r.gradient }} rounded-xl flex items-center justify-center text-white font-extrabold text-sm shadow-lg"
+            >
+              {{ r.initial }}
+            </div>
+            <div>
+              <div class="font-bold text-white text-sm">{{ r.name }}</div>
+              <div class="text-xs text-warm-400/50">Google Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 10.
+GALLERY — Cinematic Image Mosaic #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 relative overflow-hidden bg-white">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-50/40 rounded-full blur-[160px]"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >Our Ambiance</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-display font-black text-warm-900 leading-[1.04]"
+      >
+        A Taste of <span class="gradient-text-warm">Vietnam & China</span>
+      </h2>
+      <p class="text-warm-500 max-w-xl mx-auto text-base mt-5">
+        Step inside and experience the warm, inviting atmosphere that has made
+        us a Salt Lake City staple.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+      <div
+        class="relative overflow-hidden rounded-2xl aspect-square reveal img-zoom-wrap group"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=85"
+          alt="Restaurant interior"
+          class="img-zoom w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div
+          class="absolute bottom-3 left-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <i class="fa-solid fa-camera mr-1"></i> Cozy Dining Room
+        </div>
+      </div>
+      <div
+        class="relative overflow-hidden rounded-2xl aspect-square reveal img-zoom-wrap group lg:col-span-2 lg:row-span-2"
+        style="transition-delay: 0.05s"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85"
+          alt="Beautiful food presentation"
+          class="img-zoom w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div
+          class="absolute bottom-4 left-4 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <i class="fa-solid fa-camera mr-1"></i> Chef's Presentation
+        </div>
+      </div>
+      <div
+        class="relative overflow-hidden rounded-2xl aspect-square reveal img-zoom-wrap group"
+        style="transition-delay: 0.1s"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=85"
+          alt="Warm ambiance"
+          class="img-zoom w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div
+          class="absolute bottom-3 left-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <i class="fa-solid fa-camera mr-1"></i> Warm Lighting
+        </div>
+      </div>
+      <div
+        class="relative overflow-hidden rounded-2xl aspect-square reveal img-zoom-wrap group lg:col-span-2"
+        style="transition-delay: 0.15s"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&q=85"
+          alt="Delicious dishes"
+          class="img-zoom w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div
+          class="absolute bottom-3 left-3 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <i class="fa-solid fa-camera mr-1"></i> Family-Style Dining
+        </div>
+      </div>
+      <div
+        class="relative overflow-hidden rounded-2xl aspect-square reveal img-zoom-wrap group"
+        style="transition-delay: 0.2s"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=500&q=85"
+          alt="Vietnamese coffee"
+          class="img-zoom w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div
+          class="absolute bottom-3 left-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <i class="fa-solid fa-camera mr-1"></i> Vietnamese Coffee
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 11. WAYS
+TO DINE — Icon Showcase with Animated Glow #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="py-24 md:py-36 relative overflow-hidden bg-white">
+  <div
+    class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-50/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"
+  ></div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >How to Enjoy</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-warm-900 leading-[1.04]"
+      >
+        Ways to <span class="gradient-text-warm">Dine</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+      {% set modes = [ {'icon': 'fa-chair', 'title': 'Dine-In', 'desc': 'Relax
+      in our warm, casual atmosphere. Perfect for family dinners and catching up
+      with friends.', 'color': 'primary'}, {'icon': 'fa-bag-shopping', 'title':
+      'Takeout', 'desc': 'Order ahead and pick up at the counter. All your
+      favorites packed fresh and ready to go.', 'color': 'amber'}, {'icon':
+      'fa-car-side', 'title': 'Curbside Pickup', 'desc': 'Call ahead and we\'ll
+      bring your order to your car. Quick, convenient & contactless.', 'color':
+      'green'} ] %} {% for m in modes %}
+      <div
+        class="text-center reveal group relative"
+        style="transition-delay:{{ loop.index0 * 0.1 }}s"
+      >
+        {# Glow orb #}
+        <div
+          class="absolute top-12 left-1/2 -translate-x-1/2 w-32 h-32 bg-{{ m.color }}-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"
+        ></div>
+        <div class="relative z-10">
+          <div
+            class="w-28 h-28 bg-gradient-to-br from-{{ m.color }}-50 to-{{ m.color }}-100 text-{{ m.color }}-600 rounded-[2.5rem] flex items-center justify-center text-4xl mx-auto mb-6 group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-{{ m.color }}-500/[0.12] transition-all duration-500 border border-{{ m.color }}-200/50"
+          >
+            <i class="fa-solid {{ m.icon }}"></i>
+          </div>
+          <h3 class="font-serif font-extrabold text-2xl text-warm-900 mb-3">
+            {{ m.title }}
+          </h3>
+          <p class="text-warm-500 text-sm leading-relaxed max-w-xs mx-auto">
+            {{ m.desc }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="flex justify-center mt-12 reveal">
+      <span
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-50 text-red-500 rounded-full text-sm font-bold border border-red-100 shadow-sm"
+      >
+        <i class="fa-solid fa-circle-xmark text-xs"></i> No delivery available
+      </span>
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 11.
+VALUES — Dark Elevated Cards with Gradient Accents #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="py-24 md:py-36 relative overflow-hidden bg-gradient-to-br from-warm-950 via-warm-950 to-warm-900"
+>
+  <div class="absolute inset-0 particle-grid opacity-[0.02]"></div>
+  <div
+    class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-primary-600/8 rounded-full blur-[120px] translate-x-1/2"
+  ></div>
+  <div
+    class="absolute bottom-1/3 left-0 w-[400px] h-[400px] bg-amber-600/5 rounded-full blur-[100px] -translate-x-1/2"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 bg-white/5 text-primary-300 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-white/5"
+        >What We Stand For</span
+      >
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white leading-[1.04]"
+      >
+        Our <span class="gradient-text-warm">Values</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+      {% set values = [ {'emoji': '🎯', 'color': 'primary', 'title': 'Our
+      Mission', 'desc': 'To bring authentic Vietnamese & Chinese flavors to Salt
+      Lake City — one bowl of pho and one smile at a time.'}, {'emoji': '👁️',
+      'color': 'amber', 'title': 'Our Vision', 'desc': 'To be Salt Lake City\'s
+      most loved destination for Vietnamese & Chinese comfort food — where every
+      guest feels at home.'}, {'emoji': '🤝', 'color': 'rose', 'title': 'Our
+      Promise', 'desc': 'Fresh ingredients daily. Authentic family recipes.
+      Warm, welcoming service. Every single time.'} ] %} {% for v in values %}
+      <div
+        class="group relative rounded-3xl overflow-hidden reveal text-center"
+        style="transition-delay:{{ loop.index0 * 0.1 }}s"
+      >
+        <div
+          class="absolute inset-0 bg-white/[0.02] border border-white/[0.06] rounded-3xl group-hover:border-{{ v.color }}-500/20 transition-colors duration-500"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-{{ v.color }}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+        <div class="relative z-10 p-10">
+          <div
+            class="text-5xl mb-6 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 inline-block"
+          >
+            {{ v.emoji }}
+          </div>
+          <h3 class="font-serif font-extrabold text-2xl text-white mb-4">
+            {{ v.title }}
+          </h3>
+          <p class="text-warm-400/60 text-sm leading-relaxed">{{ v.desc }}</p>
+        </div>
+        <div
+          class="absolute bottom-0 left-[25%] right-[25%] h-0.5 bg-gradient-to-r from-transparent via-{{ v.color }}-500/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"
+        ></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 12. JOIN
+OUR COMMUNITY — Newsletter & Social CTA #} {#
+══════════════════════════════════════════════════════════════ #}
+<section
+  class="py-20 md:py-28 relative overflow-hidden bg-gradient-to-br from-white via-cream to-white"
+>
+  <div
+    class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-50/50 rounded-full blur-[120px] -translate-y-1/3 translate-x-1/4"
+  ></div>
+  <div
+    class="absolute bottom-0 left-0 w-[350px] h-[350px] bg-amber-50/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"
+  ></div>
+
+  <div class="max-w-4xl mx-auto px-6 relative z-10">
+    <div class="reveal text-center">
+      <span
+        class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-primary-200/50"
+        >Stay Connected</span
+      >
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-display font-black text-warm-900 leading-[1.04] mb-5"
+      >
+        Join Our <span class="gradient-text-warm">Community</span>
+      </h2>
+      <p class="text-warm-500 max-w-lg mx-auto mb-10 text-base">
+        Be the first to know about new dishes, seasonal specials, and exclusive
+        events at Mi La-Cai.
+      </p>
+
+      {# Social proof bar #}
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <div
+          class="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-md shadow-warm-900/[0.03] border border-warm-100/40"
+        >
+          <i class="fa-brands fa-facebook text-2xl text-blue-600"></i>
+          <span class="text-sm font-bold text-warm-800">1,200+ Likes</span>
+        </div>
+        <div
+          class="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-md shadow-warm-900/[0.03] border border-warm-100/40"
+        >
+          <i class="fa-brands fa-instagram text-2xl text-pink-600"></i>
+          <span class="text-sm font-bold text-warm-800">2,400+ Followers</span>
+        </div>
+        <div
+          class="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-md shadow-warm-900/[0.03] border border-warm-100/40"
+        >
+          <i class="fa-brands fa-yelp text-2xl text-red-600"></i>
+          <span class="text-sm font-bold text-warm-800">4.6★ Rating</span>
+        </div>
+      </div>
+
+      {# Newsletter form #}
+      <div class="max-w-md mx-auto">
+        <form
+          class="flex flex-col sm:flex-row gap-3"
+          onsubmit="
+            event.preventDefault();
+            alert('Thanks for subscribing! 🍜');
+          "
+        >
+          <div class="relative flex-1 group">
+            <i
+              class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-warm-400 group-focus-within:text-primary-500 transition-colors"
+            ></i>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              class="w-full pl-11 pr-4 py-3.5 bg-white border-2 border-warm-200/60 focus:border-primary-400 rounded-xl text-sm text-warm-800 placeholder:text-warm-400 outline-none transition-all duration-300 shadow-sm focus:shadow-md focus:shadow-primary-500/10"
+            />
+          </div>
+          <button
+            type="submit"
+            class="px-6 py-3.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30 whitespace-nowrap"
+          >
+            Subscribe <i class="fa-solid fa-paper-plane ml-1.5 text-xs"></i>
+          </button>
+        </form>
+        <p class="text-xs text-warm-400 mt-3">
+          No spam — just delicious updates. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 13.
+CATERING CTA — Dark Cinematic Banner #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="relative py-24 md:py-32 overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1920&q=85"
+      alt="Catering"
+      class="w-full h-full object-cover scale-105"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-warm-950/95 via-warm-950/85 to-warm-950/70"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-warm-950/60 via-transparent to-warm-950/30"
+    ></div>
+  </div>
+  <div
+    class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-600/12 rounded-full blur-[120px]"
+  ></div>
+  <div
+    class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-amber-600/8 rounded-full blur-[100px]"
+  ></div>
+
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal">
+    <span
+      class="inline-block px-4 py-1.5 bg-white/5 text-primary-300 rounded-full text-[11px] font-extrabold tracking-[.25em] uppercase mb-4 border border-white/5"
+      >Catering & Events</span
+    >
+    <h2
+      class="text-3xl md:text-5xl lg:text-6xl font-serif font-black text-white mt-4 mb-5 leading-[1.08]"
+    >
+      Hosting an Event?
+    </h2>
+    <p
+      class="text-warm-400/70 max-w-lg mx-auto mb-10 text-base leading-relaxed"
+    >
+      We offer large takeout orders for gatherings, parties & office events. Let
+      us bring authentic Vietnamese & Chinese flavors to your celebration.
+    </p>
+    <a
+      href="tel:+18013223590"
+      class="group inline-flex items-center gap-3 px-9 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-primary-500/25 transition-all hover:-translate-y-1 hover:shadow-primary-500/40"
+    >
+      <i class="fa-solid fa-phone"></i> Call for Catering
+      <i
+        class="fa-solid fa-arrow-right ml-1 text-sm group-hover:translate-x-1.5 transition-transform"
+      ></i>
+    </a>
+  </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ #} {# 13.
+FINAL CTA — Cinematic Closing with Parallax #} {#
+══════════════════════════════════════════════════════════════ #}
+<section class="relative py-32 md:py-48 overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=1920&q=85"
+      alt="Vietnamese coffee"
+      class="w-full h-full object-cover scale-105"
+      id="final-bg"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-warm-950/97 via-warm-950/85 to-warm-950/60"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-warm-950/80 via-transparent to-warm-950/30"
+    ></div>
+  </div>
+  <div
+    class="absolute top-1/4 right-[15%] w-[400px] h-[400px] bg-primary-500/10 rounded-full blur-[120px] orb"
+    style="animation-duration: 8s"
+  ></div>
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <div
+        class="text-sm text-primary-300/45 tracking-[0.4em] uppercase font-bold mb-5"
+      >
+        Your Table is Waiting
+      </div>
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white mb-6 leading-[1.04]"
+      >
+        Ready for the Best Pho<br class="hidden sm:block" />
+        <span class="gradient-text-warm">in Salt Lake City?</span>
+      </h2>
+      <p
+        class="text-warm-300/50 text-lg mb-12 max-w-xl mx-auto leading-relaxed"
+      >
+        Open six days a week on State Street — lunch & dinner. Walk in or call
+        ahead.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/menu"
+          class="group px-9 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-primary-500/25 transition-all hover:-translate-y-1 hover:shadow-primary-500/40 text-center"
+        >
+          Browse Our Menu
+          <i
+            class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform inline-block"
+          ></i>
+        </a>
+        <a
+          href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111"
+          target="_blank"
+          rel="noopener"
+          class="px-9 py-4 border-2 border-white/12 hover:border-white/25 rounded-2xl font-bold text-lg text-white transition-all hover:bg-white/[0.04] hover:-translate-y-1 text-center"
+        >
+          <i class="fa-solid fa-map-pin mr-2"></i> Get Directions
+        </a>
+      </div>
+      <div
+        class="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-14 text-white/40 text-sm font-medium reveal"
+        style="transition-delay: 0.2s"
+      >
+        <span
+          ><i class="fa-solid fa-location-dot text-primary-400 mr-2 text-xs"></i
+          >961 S State St, SLC</span
+        >
+        <span
+          ><i class="fa-solid fa-phone text-primary-400 mr-2 text-xs"></i>(801)
+          322-3590</span
+        >
+        <span
+          ><i class="fa-solid fa-clock text-primary-400 mr-2 text-xs"></i
+          >Mon–Sat · Lunch & Dinner</span
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %} {% block scripts %}
+<script>
+  // ── Intersection Observer for reveal animations ──
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
+  );
+  document
+    .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+    .forEach((el) => revealObserver.observe(el));
+
+  // ── Final CTA parallax ──
+  const finalBg = document.getElementById("final-bg");
+  if (finalBg) {
+    window.addEventListener("scroll", () => {
+      const rect = finalBg.closest("section").getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const offset = (window.innerHeight - rect.top) * 0.08;
+        finalBg.style.transform = "scale(1.05) translateY(" + offset + "px)";
+      }
+    });
+  }
+
+  // ── Animated Counter ──
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const duration = 2000;
+          const startTime = performance.now();
+
+          function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            if (Number.isInteger(target)) {
+              el.textContent = Math.floor(current);
+            } else {
+              el.textContent = current.toFixed(1);
+            }
+
+            if (progress < 1) requestAnimationFrame(update);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(update);
+          counterObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  document
+    .querySelectorAll(".counter-value")
+    .forEach((el) => counterObserver.observe(el));
+</script>
 {% endblock %}

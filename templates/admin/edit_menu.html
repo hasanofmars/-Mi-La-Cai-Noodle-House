@@ -1,0 +1,199 @@
+{% extends "admin/base_admin.html" %} {% block title %}Edit Menu — Admin{%
+endblock %} {% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+  <a
+    href="/admin/"
+    class="inline-flex items-center gap-1.5 text-sm text-warm-400 hover:text-primary-500 mb-6 transition-colors"
+  >
+    <i class="fa-solid fa-arrow-left text-xs"></i> Back to Dashboard
+  </a>
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-3xl font-serif font-bold text-warm-900 mb-1">
+        Menu Editor
+      </h1>
+      <p class="text-warm-400 text-sm">
+        Add, edit, or remove menu items. Use blank "Category" to continue a
+        category.
+      </p>
+    </div>
+  </div>
+
+  <form
+    method="POST"
+    class="bg-white rounded-2xl p-6 sm:p-8 border border-warm-100/40 shadow-sm"
+  >
+    <div id="menu-container" class="space-y-3">
+      {% for cat, items in menu.items() %} {── Category Header ──}
+      <div
+        class="menu-cat bg-primary-50/30 rounded-xl border border-primary-100/50 overflow-hidden"
+      >
+        <div
+          class="flex items-center gap-3 px-4 py-3 bg-primary-50/50 border-b border-primary-100/50"
+        >
+          <i class="fa-solid fa-folder-open text-primary-400 text-xs"></i>
+          <input
+            type="text"
+            name="category"
+            value="{{ cat }}"
+            placeholder="Category name"
+            class="flex-1 px-3 py-1.5 bg-white border border-primary-200 rounded-lg text-sm font-bold text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+          />
+          <button
+            type="button"
+            onclick="this.closest('.menu-cat').remove()"
+            class="px-2 py-1 text-xs text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+          >
+            <i class="fa-solid fa-trash-can mr-1"></i> Remove
+          </button>
+        </div>
+        {% for item in items %}
+        <div
+          class="menu-item grid sm:grid-cols-12 gap-2 px-4 py-3 border-b border-primary-50 last:border-b-0 hover:bg-white/50 transition-colors"
+        >
+          <div class="sm:col-span-2">
+            <input
+              type="text"
+              name="name"
+              value="{{ item.name }}"
+              placeholder="Item name"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-1">
+            <input
+              type="text"
+              name="price"
+              value="{{ item.price }}"
+              placeholder="0.00"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-3">
+            <input
+              type="text"
+              name="desc"
+              value="{{ item.desc }}"
+              placeholder="Description"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-2">
+            <input
+              type="text"
+              name="badge"
+              value="{{ item.badge }}"
+              placeholder="Badge"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-2">
+            <input
+              type="text"
+              name="img"
+              value="{{ item.img }}"
+              placeholder="Image path or URL"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-1">
+            <input
+              type="text"
+              name="spice"
+              value="{{ item.spice }}"
+              placeholder="0"
+              class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"
+            />
+          </div>
+          <div class="sm:col-span-1 flex items-center gap-1">
+            <input
+              type="hidden"
+              name="tags"
+              value="{{ item.tags|join(',') }}"
+            />
+            <button
+              type="button"
+              onclick="this.closest('.menu-item').remove()"
+              class="px-2 py-1.5 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all text-xs"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+        <button
+          type="button"
+          onclick="addMenuItem(this.closest('.menu-cat'))"
+          class="w-full py-2 text-xs text-warm-400 hover:text-primary-500 hover:bg-white/50 transition-all"
+        >
+          <i class="fa-solid fa-plus mr-1"></i> Add item
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <button
+      type="button"
+      onclick="addCategory()"
+      class="mt-4 w-full py-3 border-2 border-dashed border-warm-200 hover:border-primary-300 rounded-xl text-sm text-warm-400 hover:text-primary-500 font-semibold transition-all"
+    >
+      <i class="fa-solid fa-plus mr-1.5"></i> Add Category
+    </button>
+
+    <div class="flex items-center gap-3 mt-6 pt-2 border-t border-warm-100">
+      <button
+        type="submit"
+        class="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary-500/20"
+      >
+        <i class="fa-solid fa-save mr-1.5"></i> Save Menu
+      </button>
+      <a
+        href="/admin/"
+        class="px-6 py-2.5 border border-warm-200 text-warm-600 rounded-xl font-semibold text-sm hover:bg-warm-50 transition-all"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  function addCategory() {
+    const container = document.getElementById("menu-container");
+    const cat = document.createElement("div");
+    cat.className =
+      "menu-cat bg-primary-50/30 rounded-xl border border-primary-100/50 overflow-hidden";
+    cat.innerHTML = `<div class="flex items-center gap-3 px-4 py-3 bg-primary-50/50 border-b border-primary-100/50">
+    <i class="fa-solid fa-folder-open text-primary-400 text-xs"></i>
+    <input type="text" name="category" value="New Category" placeholder="Category name"
+      class="flex-1 px-3 py-1.5 bg-white border border-primary-200 rounded-lg text-sm font-bold text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10">
+    <button type="button" onclick="this.closest('.menu-cat').remove()" class="px-2 py-1 text-xs text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"><i class="fa-solid fa-trash-can mr-1"></i> Remove</button>
+  </div>
+  <div class="menu-item grid sm:grid-cols-12 gap-2 px-4 py-3">
+    <div class="sm:col-span-2"><input type="text" name="name" value="" placeholder="Item name" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1"><input type="text" name="price" value="" placeholder="0.00" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-3"><input type="text" name="desc" value="" placeholder="Description" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-2"><input type="text" name="img" value="" placeholder="Image path" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-2"><input type="text" name="badge" value="" placeholder="Badge" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1"><input type="text" name="spice" value="0" placeholder="0" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1 flex items-center gap-1"><input type="hidden" name="tags" value=""><button type="button" onclick="this.closest('.menu-item').remove()" class="px-2 py-1.5 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all text-xs"><i class="fa-solid fa-xmark"></i></button></div>
+  </div>
+  <button type="button" onclick="addMenuItem(this.closest('.menu-cat'))" class="w-full py-2 text-xs text-warm-400 hover:text-primary-500 hover:bg-white/50 transition-all"><i class="fa-solid fa-plus mr-1"></i> Add item</button>`;
+    container.appendChild(cat);
+  }
+
+  function addMenuItem(cat) {
+    const addBtn = cat.querySelector("button:last-of-type");
+    const div = document.createElement("div");
+    div.className =
+      "menu-item grid sm:grid-cols-12 gap-2 px-4 py-3 border-t border-primary-50 hover:bg-white/50 transition-colors";
+    div.innerHTML = `<div class="sm:col-span-2"><input type="text" name="name" value="" placeholder="Item name" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1"><input type="text" name="price" value="" placeholder="0.00" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-3"><input type="text" name="desc" value="" placeholder="Description" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-2"><input type="text" name="img" value="" placeholder="Image path" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-2"><input type="text" name="badge" value="" placeholder="Badge" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1"><input type="text" name="spice" value="0" placeholder="0" class="w-full px-3 py-1.5 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10"></div>
+    <div class="sm:col-span-1 flex items-center gap-1"><input type="hidden" name="tags" value=""><button type="button" onclick="this.closest('.menu-item').remove()" class="px-2 py-1.5 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all text-xs"><i class="fa-solid fa-xmark"></i></button></div>`;
+    cat.insertBefore(div, addBtn);
+  }
+</script>
+{% endblock %}

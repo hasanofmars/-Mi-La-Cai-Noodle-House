@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Admin — Mi La-Cai{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#faf5f0",
+                100: "#f5e8d8",
+                200: "#ebcfb0",
+                300: "#ddaf80",
+                400: "#d08e56",
+                500: "#c57538",
+                600: "#b55e2d",
+                700: "#964a27",
+                800: "#7a3d25",
+                900: "#643422",
+                950: "#361911",
+              },
+              warm: {
+                50: "#f8faf7",
+                100: "#eef2ea",
+                200: "#dde5d5",
+                300: "#c2d0b5",
+                400: "#a3b890",
+                500: "#849f6f",
+                600: "#688355",
+                700: "#526744",
+                800: "#435438",
+                900: "#384530",
+                950: "#1c2418",
+              },
+            },
+            fontFamily: {
+              display: ['"Instrument Serif"', "Georgia", "serif"],
+              sans: ['"DM Sans"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "DM Sans", system-ui, sans-serif;
+      }
+      .sidebar-link {
+        transition: all 0.2s;
+      }
+      .sidebar-link:hover,
+      .sidebar-link.active {
+        background: rgba(197, 117, 56, 0.12);
+        color: #d08e56;
+      }
+      .flash-msg {
+        animation: slideIn 0.3s ease-out;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    {% block head_extra %}{% endblock %}
+  </head>
+  <body class="bg-warm-950 min-h-screen flex">
+    {% if session.admin_logged_in %}
+    <aside
+      class="w-64 bg-warm-950 border-r border-warm-800/30 flex-shrink-0 hidden lg:flex flex-col min-h-screen sticky top-0"
+    >
+      <div class="p-5 border-b border-warm-800/30">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-lg"
+          >
+            🍜
+          </div>
+          <div>
+            <div class="font-display font-bold text-base text-white">
+              Mi La-Cai
+            </div>
+            <div
+              class="text-[10px] text-primary-400/60 tracking-[.2em] uppercase"
+            >
+              Admin Panel
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="flex-1 p-3 space-y-0.5 overflow-y-auto">
+        <a
+          href="/admin/"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-chart-pie w-5 text-center text-xs"></i>
+          Dashboard
+        </a>
+        <div
+          class="text-[10px] text-warm-600 uppercase tracking-widest font-semibold px-3 pt-5 pb-1.5"
+        >
+          Content
+        </div>
+        <a
+          href="/admin/edit/site"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/site' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-globe w-5 text-center text-xs"></i> Site Info
+        </a>
+        <a
+          href="/admin/edit/hero"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/hero' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i
+            class="fa-solid fa-wand-magic-sparkles w-5 text-center text-xs"
+          ></i>
+          Hero Section
+        </a>
+        <a
+          href="/admin/edit/stats"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/stats' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-chart-simple w-5 text-center text-xs"></i> Stats
+        </a>
+        <a
+          href="/admin/edit/story"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/story' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-book-open w-5 text-center text-xs"></i> Story
+        </a>
+        <a
+          href="/admin/edit/menu"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/menu' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-utensils w-5 text-center text-xs"></i> Menu
+        </a>
+        <a
+          href="/admin/edit/testimonials"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/testimonials' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-quote-right w-5 text-center text-xs"></i>
+          Testimonials
+        </a>
+        <a
+          href="/admin/edit/gallery"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/gallery' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-images w-5 text-center text-xs"></i> Gallery
+        </a>
+        <a
+          href="/admin/edit/hours"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-300 {% if request.path == '/admin/edit/hours' %}active text-primary-400 bg-primary-500/8{% endif %}"
+        >
+          <i class="fa-solid fa-clock w-5 text-center text-xs"></i> Hours
+        </a>
+        <div class="border-t border-warm-800/30 my-3"></div>
+        <a
+          href="/"
+          target="_blank"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-warm-500 hover:text-warm-300"
+        >
+          <i
+            class="fa-solid fa-arrow-up-right-from-square w-5 text-center text-xs"
+          ></i>
+          View Site
+        </a>
+        <a
+          href="/admin/logout"
+          class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-400/70 hover:text-red-400 hover:bg-red-500/8"
+        >
+          <i class="fa-solid fa-right-from-bracket w-5 text-center text-xs"></i>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <div
+      class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-warm-950 border-b border-warm-800/30 text-white px-4 py-3 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center text-base"
+        >
+          🍜
+        </div>
+        <span class="font-display font-bold">Admin</span>
+      </div>
+      <button
+        onclick="
+          document.getElementById('mobile-nav').classList.toggle('hidden')
+        "
+        class="text-white/70 text-xl"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-nav" class="hidden fixed inset-0 z-40 bg-warm-950/98 pt-16">
+      <nav class="p-4 space-y-1">
+        <a
+          href="/admin/"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-chart-pie mr-3 w-5 text-center"></i
+          >Dashboard</a
+        >
+        <a
+          href="/admin/edit/site"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-globe mr-3 w-5 text-center"></i>Site Info</a
+        >
+        <a
+          href="/admin/edit/hero"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-wand-magic-sparkles mr-3 w-5 text-center"></i
+          >Hero</a
+        >
+        <a
+          href="/admin/edit/stats"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-chart-simple mr-3 w-5 text-center"></i>Stats</a
+        >
+        <a
+          href="/admin/edit/story"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-book-open mr-3 w-5 text-center"></i>Story</a
+        >
+        <a
+          href="/admin/edit/menu"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-utensils mr-3 w-5 text-center"></i>Menu</a
+        >
+        <a
+          href="/admin/edit/testimonials"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-quote-right mr-3 w-5 text-center"></i
+          >Testimonials</a
+        >
+        <a
+          href="/admin/edit/gallery"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-images mr-3 w-5 text-center"></i>Gallery</a
+        >
+        <a
+          href="/admin/edit/hours"
+          class="block px-4 py-3 rounded-xl text-warm-300 hover:bg-white/5 hover:text-white text-sm"
+          ><i class="fa-solid fa-clock mr-3 w-5 text-center"></i>Hours</a
+        >
+        <div class="border-t border-warm-800/30 my-3"></div>
+        <a
+          href="/"
+          target="_blank"
+          class="block px-4 py-3 rounded-xl text-warm-500 hover:bg-white/5 hover:text-warm-300 text-sm"
+          ><i
+            class="fa-solid fa-arrow-up-right-from-square mr-3 w-5 text-center"
+          ></i
+          >View Site</a
+        >
+        <a
+          href="/admin/logout"
+          class="block px-4 py-3 rounded-xl text-red-400/70 hover:bg-red-500/8 hover:text-red-400 text-sm"
+          ><i class="fa-solid fa-right-from-bracket mr-3 w-5 text-center"></i
+          >Logout</a
+        >
+      </nav>
+    </div>
+    {% endif %}
+
+    <main
+      class="flex-1 {% if session.admin_logged_in %}lg:ml-0 pt-16 lg:pt-0{% endif %} min-h-screen"
+    >
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="fixed top-4 right-4 z-[100] space-y-2">
+        {% for category, message in messages %}
+        <div
+          class="flash-msg px-5 py-3 rounded-xl shadow-xl text-sm font-semibold flex items-center gap-2.5 {% if category == 'success' %}bg-primary-900/60 text-primary-200 border border-primary-700/40{% elif category == 'error' %}bg-red-900/50 text-red-200 border border-red-700/40{% else %}bg-warm-800/60 text-warm-200 border border-warm-600/40{% endif %}"
+        >
+          <i
+            class="fa-solid {% if category == 'success' %}fa-check-circle{% elif category == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"
+          ></i>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block content %}{% endblock %}
+    </main>
+
+    <script>
+      document.querySelectorAll(".flash-msg").forEach((el) => {
+        setTimeout(() => {
+          el.style.opacity = "0";
+          el.style.transition = "opacity 0.5s";
+          setTimeout(() => el.remove(), 500);
+        }, 4000);
+      });
+    </script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

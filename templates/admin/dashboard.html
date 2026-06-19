@@ -1,0 +1,168 @@
+{% extends "admin/base_admin.html" %} {% block title %}Dashboard — Admin{%
+endblock %} {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-3xl font-display font-bold text-white">Dashboard</h1>
+      <p class="text-warm-400 text-sm mt-1">
+        Manage your website content from one place.
+      </p>
+    </div>
+    <a
+      href="/"
+      target="_blank"
+      class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl text-sm font-semibold transition-all shadow-lg shadow-primary-500/20"
+    >
+      <i class="fa-solid fa-eye"></i> View Site
+    </a>
+  </div>
+
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+    <div class="bg-warm-900 rounded-2xl p-5 border border-warm-800/30">
+      <div class="flex items-center gap-3 mb-3">
+        <div
+          class="w-10 h-10 bg-primary-500/15 text-primary-400 rounded-xl flex items-center justify-center"
+        >
+          <i class="fa-solid fa-utensils"></i>
+        </div>
+        <span
+          class="text-xs text-warm-400 font-semibold uppercase tracking-wide"
+          >Menu Items</span
+        >
+      </div>
+      <div class="text-3xl font-display font-bold text-white">50+</div>
+    </div>
+    <div class="bg-warm-900 rounded-2xl p-5 border border-warm-800/30">
+      <div class="flex items-center gap-3 mb-3">
+        <div
+          class="w-10 h-10 bg-green-500/15 text-green-400 rounded-xl flex items-center justify-center"
+        >
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <span
+          class="text-xs text-warm-400 font-semibold uppercase tracking-wide"
+          >Rating</span
+        >
+      </div>
+      <div class="text-3xl font-display font-bold text-white">
+        {{ data.site.rating }}
+      </div>
+    </div>
+    <div class="bg-warm-900 rounded-2xl p-5 border border-warm-800/30">
+      <div class="flex items-center gap-3 mb-3">
+        <div
+          class="w-10 h-10 bg-amber-500/15 text-amber-400 rounded-xl flex items-center justify-center"
+        >
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+        <span
+          class="text-xs text-warm-400 font-semibold uppercase tracking-wide"
+          >Testimonials</span
+        >
+      </div>
+      <div class="text-3xl font-display font-bold text-white">
+        {{ data.testimonials|length }}
+      </div>
+    </div>
+    <div class="bg-warm-900 rounded-2xl p-5 border border-warm-800/30">
+      <div class="flex items-center gap-3 mb-3">
+        <div
+          class="w-10 h-10 bg-blue-500/15 text-blue-400 rounded-xl flex items-center justify-center"
+        >
+          <i class="fa-solid fa-images"></i>
+        </div>
+        <span
+          class="text-xs text-warm-400 font-semibold uppercase tracking-wide"
+          >Gallery</span
+        >
+      </div>
+      <div class="text-3xl font-display font-bold text-white">
+        {{ data.gallery|length }}
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-lg font-bold text-warm-300 mb-4">Content Sections</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% set sections = [ {'href': '/admin/edit/site', 'icon': 'fa-globe',
+    'color': 'from-blue-500 to-blue-600', 'title': 'Site Info', 'desc':
+    'Restaurant name, address, phone, description'}, {'href':
+    '/admin/edit/hero', 'icon': 'fa-wand-magic-sparkles', 'color':
+    'from-primary-500 to-primary-600', 'title': 'Hero Section', 'desc':
+    'Headline, subtitle, CTA buttons, badges'}, {'href': '/admin/edit/stats',
+    'icon': 'fa-chart-simple', 'color': 'from-emerald-500 to-emerald-600',
+    'title': 'Stats', 'desc': 'Years served, menu count, rating, reviews'},
+    {'href': '/admin/edit/story', 'icon': 'fa-book-open', 'color':
+    'from-amber-500 to-orange-600', 'title': 'Our Story', 'desc': 'About text,
+    features, award badge'}, {'href': '/admin/edit/menu', 'icon': 'fa-utensils',
+    'color': 'from-rose-500 to-rose-600', 'title': 'Menu', 'desc': 'Categories,
+    items, prices, descriptions'}, {'href': '/admin/edit/testimonials', 'icon':
+    'fa-quote-right', 'color': 'from-purple-500 to-purple-600', 'title':
+    'Testimonials', 'desc': 'Guest reviews, names, star ratings'}, {'href':
+    '/admin/edit/gallery', 'icon': 'fa-images', 'color': 'from-teal-500
+    to-teal-600', 'title': 'Gallery', 'desc': 'Photos, captions, image URLs'},
+    {'href': '/admin/edit/hours', 'icon': 'fa-clock', 'color': 'from-cyan-500
+    to-cyan-600', 'title': 'Hours', 'desc': 'Operating hours for each day'} ] %}
+    {% for s in sections %}
+    <a
+      href="{{ s.href }}"
+      class="group bg-warm-900 rounded-2xl p-6 border border-warm-800/30 hover:border-primary-500/30 transition-all duration-300"
+    >
+      <div class="flex items-start gap-4">
+        <div
+          class="w-12 h-12 bg-gradient-to-br {{ s.color }} rounded-2xl flex items-center justify-center text-white text-lg shadow-lg shrink-0 group-hover:scale-105 transition-transform"
+        >
+          <i class="fa-solid {{ s.icon }}"></i>
+        </div>
+        <div class="min-w-0">
+          <h3
+            class="font-bold text-white mb-0.5 group-hover:text-primary-400 transition-colors"
+          >
+            {{ s.title }}
+          </h3>
+          <p class="text-xs text-warm-400 leading-relaxed">{{ s.desc }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="mt-10 bg-warm-900/50 rounded-2xl p-6 border border-warm-800/30">
+    <div class="flex items-start gap-4">
+      <div
+        class="w-11 h-11 bg-primary-500/20 rounded-2xl flex items-center justify-center text-primary-400 text-xl shrink-0"
+      >
+        🔑
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-1">Admin Login Credentials</h3>
+        <p class="text-sm text-warm-400 mb-2">
+          Username:
+          <code
+            class="bg-warm-800 px-2 py-0.5 rounded text-primary-400 font-mono text-sm border border-warm-700/50"
+            >admin</code
+          >
+          &nbsp;|&nbsp; Password:
+          <code
+            class="bg-warm-800 px-2 py-0.5 rounded text-primary-400 font-mono text-sm border border-warm-700/50"
+            >milacai2026</code
+          >
+        </p>
+        <p class="text-xs text-warm-500">
+          Change these in
+          <code
+            class="bg-warm-800 px-1 rounded text-xs border border-warm-700/50"
+            >admin_data.json</code
+          >
+          →
+          <code
+            class="bg-warm-800 px-1 rounded text-xs border border-warm-700/50"
+            >admin</code
+          >
+          section.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "admin/base_admin.html" %} {% block title %}Edit Site Info — Admin{%
+endblock %} {% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+  <a
+    href="/admin/"
+    class="inline-flex items-center gap-1.5 text-sm text-warm-400 hover:text-primary-500 mb-6 transition-colors"
+  >
+    <i class="fa-solid fa-arrow-left text-xs"></i> Back to Dashboard
+  </a>
+  <h1 class="text-3xl font-serif font-bold text-warm-900 mb-1">Site Info</h1>
+  <p class="text-warm-400 text-sm mb-8">
+    Basic information about your restaurant.
+  </p>
+
+  <form
+    method="POST"
+    class="bg-white rounded-2xl p-6 sm:p-8 border border-warm-100/40 shadow-sm space-y-5"
+  >
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Restaurant Name</label
+        >
+        <input
+          type="text"
+          name="name"
+          value="{{ data.site.name }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Tagline</label
+        >
+        <input
+          type="text"
+          name="tagline"
+          value="{{ data.site.tagline }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div class="sm:col-span-2">
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Address</label
+        >
+        <input
+          type="text"
+          name="address"
+          value="{{ data.site.address }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Phone (Display)</label
+        >
+        <input
+          type="text"
+          name="phone"
+          value="{{ data.site.phone }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Phone (Link — no spaces)</label
+        >
+        <input
+          type="text"
+          name="phone_link"
+          value="{{ data.site.phone_link }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Email</label
+        >
+        <input
+          type="text"
+          name="email"
+          value="{{ data.site.email }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Rating</label
+        >
+        <input
+          type="text"
+          name="rating"
+          value="{{ data.site.rating }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Reviews Count</label
+        >
+        <input
+          type="text"
+          name="reviews"
+          value="{{ data.site.reviews }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Since</label
+        >
+        <input
+          type="text"
+          name="since"
+          value="{{ data.site.since }}"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-warm-700 mb-1.5"
+          >Description</label
+        >
+        <textarea
+          name="description"
+          rows="3"
+          class="w-full px-4 py-2.5 bg-warm-50 border border-warm-200 rounded-xl text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 transition-all"
+        >
+{{ data.site.description }}</textarea
+        >
+      </div>
+    </div>
+    <div class="flex items-center gap-3 pt-2">
+      <button
+        type="submit"
+        class="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary-500/20"
+      >
+        <i class="fa-solid fa-save mr-1.5"></i> Save Changes
+      </button>
+      <a
+        href="/admin/"
+        class="px-6 py-2.5 border border-warm-200 text-warm-600 rounded-xl font-semibold text-sm hover:bg-warm-50 transition-all"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %}

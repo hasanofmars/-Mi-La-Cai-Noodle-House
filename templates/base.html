@@ -1,174 +1,659 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Mi La-Cai Noodle House{% endblock %}</title>
-    <meta name="description" content="Family-owned Vietnamese & Chinese restaurant in Salt Lake City. Award-winning Pho, Walnut Shrimp & Egg Rolls. 4.6★ from 1,900+ reviews. Dine-in, takeout & curbside.">
+    <meta
+      name="description"
+      content="Family-owned Vietnamese & Chinese restaurant in Salt Lake City. Award-winning Pho, Walnut Shrimp & Egg Rolls. 4.6★ from 1,900+ reviews. Dine-in, takeout & curbside."
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { 50: '#faf5f0', 100: '#f5e8d8', 200: '#ebcfb0', 300: '#ddaf80', 400: '#d08e56', 500: '#c57538', 600: '#b55e2d', 700: '#964a27', 800: '#7a3d25', 900: '#643422', 950: '#361911' },
-                        warm: { 50: '#f8faf7', 100: '#eef2ea', 200: '#dde5d5', 300: '#c2d0b5', 400: '#a3b890', 500: '#849f6f', 600: '#688355', 700: '#526744', 800: '#435438', 900: '#384530', 950: '#1c2418' },
-                        cream: '#faf5f0',
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.7s ease-out forwards',
-                        'fade-up': 'fadeUp 0.7s ease-out forwards',
-                        'float': 'float 8s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' } },
-                    },
-                },
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#faf5f0",
+                100: "#f5e8d8",
+                200: "#ebcfb0",
+                300: "#ddaf80",
+                400: "#d08e56",
+                500: "#c57538",
+                600: "#b55e2d",
+                700: "#964a27",
+                800: "#7a3d25",
+                900: "#643422",
+                950: "#361911",
+              },
+              warm: {
+                50: "#f8faf7",
+                100: "#eef2ea",
+                200: "#dde5d5",
+                300: "#c2d0b5",
+                400: "#a3b890",
+                500: "#849f6f",
+                600: "#688355",
+                700: "#526744",
+                800: "#435438",
+                900: "#384530",
+                950: "#1c2418",
+              },
+              cream: "#faf5f0",
             },
-        };
+            fontFamily: {
+              display: [
+                '"Instrument Serif"',
+                '"Cormorant Garamond"',
+                "Georgia",
+                "serif",
+              ],
+              serif: [
+                '"Instrument Serif"',
+                '"Cormorant Garamond"',
+                "Georgia",
+                "serif",
+              ],
+              sans: [
+                '"DM Sans"',
+                '"Inter"',
+                "system-ui",
+                "-apple-system",
+                "sans-serif",
+              ],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.7s ease-out forwards",
+              "fade-up": "fadeUp 0.7s ease-out forwards",
+              "fade-down": "fadeDown 0.7s ease-out forwards",
+              float: "float 8s ease-in-out infinite",
+              "float-slow": "float 12s ease-in-out infinite",
+              "spin-slow": "spin 20s linear infinite",
+              "spin-slower": "spin 35s linear infinite",
+              "ping-slow": "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite",
+              pulse: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+              fadeUp: {
+                "0%": { opacity: "0", transform: "translateY(30px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeDown: {
+                "0%": { opacity: "0", transform: "translateY(-30px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-12px)" },
+              },
+              ping: {
+                "75%, 100%": { transform: "scale(2)", opacity: "0" },
+              },
+            },
+          },
+        },
+      };
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,1000;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .nav-link { position: relative; }
-        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px; background: #c57538; transition: all 0.3s ease; transform: translateX(-50%); }
-        .nav-link:hover::after, .nav-link.active::after { width: 60%; }
-        .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -12px rgba(0,0,0,0.15); }
-        .img-zoom { transition: transform 0.6s ease; }
-        .img-zoom-wrap:hover .img-zoom { transform: scale(1.06); }
-        .gradient-text { background: linear-gradient(135deg, #c57538 0%, #b55e2d 50%, #964a27 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #faf5f0; } ::-webkit-scrollbar-thumb { background: #c2d0b5; border-radius: 3px; }
+      /* === Core Reveal === */
+      .reveal {
+        opacity: 0;
+        transform: translateY(48px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-48px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(48px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.9);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* === Navigation === */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #c57538;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 60%;
+      }
+
+      /* === Cards === */
+      .card-hover {
+        transition:
+          transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 32px 64px -16px rgba(0, 0, 0, 0.12),
+          0 8px 16px -4px rgba(0, 0, 0, 0.06);
+      }
+
+      /* === Image Zoom === */
+      .img-zoom {
+        transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .img-zoom-wrap:hover .img-zoom {
+        transform: scale(1.08);
+      }
+
+      /* === Gradient Text === */
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #c57538 0%,
+          #d08e56 35%,
+          #b55e2d 65%,
+          #964a27 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .gradient-text-warm {
+        background: linear-gradient(
+          135deg,
+          #c57538 0%,
+          #e8a87c 50%,
+          #c57538 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* === Glass Morphism === */
+      .glass {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .glass-light {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      /* === Glow Effects === */
+      .glow-primary {
+        box-shadow:
+          0 0 60px -10px rgba(197, 117, 56, 0.3),
+          0 0 120px -20px rgba(197, 117, 56, 0.15);
+      }
+      .glow-amber {
+        box-shadow:
+          0 0 40px -8px rgba(245, 158, 11, 0.25),
+          0 0 80px -16px rgba(245, 158, 11, 0.1);
+      }
+
+      /* === Text Stroke === */
+      .text-stroke {
+        -webkit-text-stroke: 1px rgba(197, 117, 56, 0.3);
+        color: transparent;
+      }
+
+      /* === Marquee/Scrolling === */
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
+      }
+
+      /* === Shimmer === */
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.06) 50%,
+          transparent 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 3s ease-in-out infinite;
+      }
+
+      /* === Pulse Ring === */
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.95);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1.3);
+          opacity: 0;
+        }
+      }
+      .pulse-ring::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: inherit;
+        border: 2px solid rgba(197, 117, 56, 0.4);
+        animation: pulse-ring 2s ease-out infinite;
+      }
+
+      /* === Floating Orbs === */
+      @keyframes orb-float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(10px, -15px) scale(1.05);
+        }
+        50% {
+          transform: translate(-5px, -25px) scale(0.95);
+        }
+        75% {
+          transform: translate(-10px, -10px) scale(1.02);
+        }
+      }
+
+      /* === Scrollbar === */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #faf5f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c2d0b5;
+        border-radius: 3px;
+      }
+
+      /* === Selection === */
+      ::selection {
+        background: rgba(197, 117, 56, 0.2);
+        color: #361911;
+      }
+
+      /* === Noise Texture Overlay === */
+      .noise-bg {
+        position: relative;
+      }
+      .noise-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.015;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1;
+      }
     </style>
     {% block head_extra %}{% endblock %}
-</head>
-<body class="font-sans bg-cream text-warm-900 min-h-screen flex flex-col antialiased">
-
+  </head>
+  <body
+    class="font-sans bg-cream text-warm-900 min-h-screen flex flex-col antialiased"
+  >
     <!-- Top Bar -->
-    <div class="bg-warm-950 text-warm-400 text-xs py-2.5 tracking-wide hidden md:block">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-8">
-                <span><i class="fa-solid fa-location-dot text-primary-400 mr-1.5"></i>961 S State St, Salt Lake City, UT 84111</span>
-                <span class="text-warm-700">|</span>
-                <span><i class="fa-solid fa-star text-yellow-500 mr-1"></i>4.6 · 1,900+ Reviews</span>
-            </div>
-            <span class="text-warm-500">Chào mừng · 欢迎 · Welcome</span>
+    <div
+      class="bg-warm-950 text-warm-400 text-xs py-2.5 tracking-wide hidden md:block"
+    >
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center gap-8">
+          <span
+            ><i class="fa-solid fa-location-dot text-primary-400 mr-1.5"></i>961
+            S State St, Salt Lake City, UT 84111</span
+          >
+          <span class="text-warm-700">|</span>
+          <span
+            ><i class="fa-solid fa-star text-yellow-500 mr-1"></i>4.6 · 1,900+
+            Reviews</span
+          >
         </div>
+        <span class="text-warm-500">Chào mừng · 欢迎 · Welcome</span>
+      </div>
     </div>
 
     <!-- Header -->
-    <header class="sticky top-0 z-50" style="background: rgba(28,36,24,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.06);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center justify-between h-[70px]">
-                <a href="/" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-primary-500/20 group-hover:scale-105 transition-transform duration-300">🍜</div>
-                    <div>
-                        <div class="text-lg font-serif font-bold text-white leading-tight">Mi La-Cai</div>
-                        <div class="text-[10px] text-primary-300 tracking-[.28em] uppercase">Noodle House</div>
-                    </div>
-                </a>
-                <nav class="hidden lg:flex items-center gap-1">
-                    <a href="/" class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/' %}active text-white{% endif %}">Home</a>
-                    <a href="/menu" class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/menu' %}active text-white{% endif %}">Menu</a>
-                    <a href="/contact" class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/contact' %}active text-white{% endif %}">Hours &amp; Location</a>
-                </nav>
-                <div class="hidden lg:block">
-                    <a href="tel:+18013223590" class="px-5 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-xl text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-all duration-300 hover:-translate-y-0.5">
-                        <i class="fa-solid fa-phone mr-1.5"></i>(801) 322-3590
-                    </a>
-                </div>
-                <button id="menu-btn" class="lg:hidden text-white/80 hover:text-white text-xl p-2 transition-colors" aria-label="Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <header
+      class="sticky top-0 z-50"
+      style="
+        background: rgba(28, 36, 24, 0.92);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      "
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-[70px]">
+          <a href="/" class="flex items-center gap-3 group">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-primary-500/20 group-hover:scale-105 transition-transform duration-300"
+            >
+              🍜
             </div>
-            <div id="mobile-menu" class="lg:hidden hidden pb-5 space-y-1 border-t border-white/8 pt-4">
-                <a href="/" class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/' %}bg-white/8 text-white{% endif %}"><i class="fa-solid fa-house mr-2 w-5 text-center"></i>Home</a>
-                <a href="/menu" class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/menu' %}bg-white/8 text-white{% endif %}"><i class="fa-solid fa-utensils mr-2 w-5 text-center"></i>Menu</a>
-                <a href="/contact" class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/contact' %}bg-white/8 text-white{% endif %}"><i class="fa-solid fa-clock mr-2 w-5 text-center"></i>Hours &amp; Location</a>
-                <a href="tel:+18013223590" class="block px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl text-sm font-semibold text-white text-center mt-2"><i class="fa-solid fa-phone mr-1.5"></i>Call Now</a>
+            <div>
+              <div
+                class="text-lg font-serif font-bold text-white leading-tight"
+              >
+                Mi La-Cai
+              </div>
+              <div
+                class="text-[10px] text-primary-300 tracking-[.28em] uppercase"
+              >
+                Noodle House
+              </div>
             </div>
+          </a>
+          <nav class="hidden lg:flex items-center gap-1">
+            <a
+              href="/"
+              class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/' %}active text-white{% endif %}"
+              >Home</a
+            >
+            <a
+              href="/menu"
+              class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/menu' %}active text-white{% endif %}"
+              >Menu</a
+            >
+            <a
+              href="/contact"
+              class="nav-link px-4 py-2 text-sm font-medium text-warm-200/80 hover:text-white transition-colors {% if request.path == '/contact' %}active text-white{% endif %}"
+              >Hours &amp; Location</a
+            >
+          </nav>
+          <div class="hidden lg:block">
+            <a
+              href="tel:+18013223590"
+              class="px-5 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-xl text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <i class="fa-solid fa-phone mr-1.5"></i>(801) 322-3590
+            </a>
+          </div>
+          <button
+            id="menu-btn"
+            class="lg:hidden text-white/80 hover:text-white text-xl p-2 transition-colors"
+            aria-label="Menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
+        <div
+          id="mobile-menu"
+          class="lg:hidden hidden pb-5 space-y-1 border-t border-white/8 pt-4"
+        >
+          <a
+            href="/"
+            class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/' %}bg-white/8 text-white{% endif %}"
+            ><i class="fa-solid fa-house mr-2 w-5 text-center"></i>Home</a
+          >
+          <a
+            href="/menu"
+            class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/menu' %}bg-white/8 text-white{% endif %}"
+            ><i class="fa-solid fa-utensils mr-2 w-5 text-center"></i>Menu</a
+          >
+          <a
+            href="/contact"
+            class="block px-4 py-3 rounded-xl text-white/70 hover:bg-white/8 hover:text-white transition text-sm font-medium {% if request.path == '/contact' %}bg-white/8 text-white{% endif %}"
+            ><i class="fa-solid fa-clock mr-2 w-5 text-center"></i>Hours &amp;
+            Location</a
+          >
+          <a
+            href="tel:+18013223590"
+            class="block px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl text-sm font-semibold text-white text-center mt-2"
+            ><i class="fa-solid fa-phone mr-1.5"></i>Call Now</a
+          >
+        </div>
+      </div>
     </header>
 
     <main class="flex-1">{% block content %}{% endblock %}</main>
 
     <!-- Footer -->
     <footer class="bg-warm-950 text-warm-300 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-12 gap-10 mb-12">
-                <div class="lg:col-span-4">
-                    <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-xl">🍜</div>
-                        <div>
-                            <div class="text-lg font-serif font-bold text-white">Mi La-Cai</div>
-                            <div class="text-[10px] text-primary-400 tracking-[.2em] uppercase">Noodle House</div>
-                        </div>
-                    </div>
-                    <p class="text-sm text-warm-400 leading-relaxed max-w-xs mb-5">Family-owned Vietnamese &amp; Chinese restaurant serving Salt Lake City since 2003 — authentic flavors, generous portions, warm hospitality.</p>
-                    <div class="flex items-center gap-4">
-                        <span class="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-xs text-yellow-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> 4.6</span>
-                        <span class="text-xs text-warm-500">1,900+ reviews</span>
-                        <span class="px-3 py-1.5 bg-primary-500/10 border border-primary-500/20 rounded-full text-xs text-primary-400 font-semibold">Family Owned</span>
-                    </div>
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-10 mb-12">
+          <div class="lg:col-span-4">
+            <div class="flex items-center gap-3 mb-5">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-xl"
+              >
+                🍜
+              </div>
+              <div>
+                <div class="text-lg font-serif font-bold text-white">
+                  Mi La-Cai
                 </div>
-                <div class="lg:col-span-2">
-                    <h4 class="font-serif font-bold text-white text-sm mb-5 tracking-wide">Hours</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li class="flex justify-between gap-4"><span class="text-warm-400">Mon–Fri</span><span class="text-warm-500">11–2, 4–9 PM</span></li>
-                        <li class="flex justify-between gap-4"><span class="text-warm-400">Saturday</span><span class="text-warm-500">12–3, 4–9 PM</span></li>
-                        <li class="flex justify-between gap-4"><span class="text-red-400">Sunday</span><span class="text-red-400/60">Closed</span></li>
-                    </ul>
+                <div
+                  class="text-[10px] text-primary-400 tracking-[.2em] uppercase"
+                >
+                  Noodle House
                 </div>
-                <div class="lg:col-span-2">
-                    <h4 class="font-serif font-bold text-white text-sm mb-5 tracking-wide">Links</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="/" class="text-warm-400 hover:text-primary-400 transition-colors">Home</a></li>
-                        <li><a href="/menu" class="text-warm-400 hover:text-primary-400 transition-colors">Menu</a></li>
-                        <li><a href="/contact" class="text-warm-400 hover:text-primary-400 transition-colors">Contact</a></li>
-                        <li><a href="http://lacaislc.com" target="_blank" rel="noopener" class="text-warm-400 hover:text-primary-400 transition-colors">Official Site</a></li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-4">
-                    <h4 class="font-serif font-bold text-white text-sm mb-5 tracking-wide">Visit</h4>
-                    <p class="text-sm text-warm-400 mb-2">961 S State St<br>Salt Lake City, UT 84111</p>
-                    <a href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-primary-400 hover:text-primary-300 transition-colors font-medium mt-1">
-                        <i class="fa-solid fa-map-pin text-xs"></i>Get Directions →
-                    </a>
-                    <div class="flex gap-3 mt-5">
-                        <a href="tel:+18013223590" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"><i class="fa-solid fa-phone text-sm"></i></a>
-                        <a href="http://lacaislc.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"><i class="fa-solid fa-globe text-sm"></i></a>
-                        <a href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"><i class="fa-solid fa-map-pin text-sm"></i></a>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-warm-600">
-                <span>&copy; {{ current_year }} Mi La-Cai Noodle House. All rights reserved.</span>
-                <span>Crafted in Salt Lake City <i class="fa-solid fa-heart text-red-500 text-[9px] ml-0.5"></i></span>
+            <p class="text-sm text-warm-400 leading-relaxed max-w-xs mb-5">
+              Family-owned Vietnamese &amp; Chinese restaurant serving Salt Lake
+              City since 2003 — authentic flavors, generous portions, warm
+              hospitality.
+            </p>
+            <div class="flex items-center gap-4">
+              <span
+                class="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-xs text-yellow-400 font-semibold"
+                ><i class="fa-solid fa-star text-[10px]"></i> 4.6</span
+              >
+              <span class="text-xs text-warm-500">1,900+ reviews</span>
+              <span
+                class="px-3 py-1.5 bg-primary-500/10 border border-primary-500/20 rounded-full text-xs text-primary-400 font-semibold"
+                >Family Owned</span
+              >
             </div>
+          </div>
+          <div class="lg:col-span-2">
+            <h4
+              class="font-serif font-bold text-white text-sm mb-5 tracking-wide"
+            >
+              Hours
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li class="flex justify-between gap-4">
+                <span class="text-warm-400">Mon–Fri</span
+                ><span class="text-warm-500">11–2, 4–9 PM</span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span class="text-warm-400">Saturday</span
+                ><span class="text-warm-500">12–3, 4–9 PM</span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span class="text-red-400">Sunday</span
+                ><span class="text-red-400/60">Closed</span>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2">
+            <h4
+              class="font-serif font-bold text-white text-sm mb-5 tracking-wide"
+            >
+              Links
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="/"
+                  class="text-warm-400 hover:text-primary-400 transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/menu"
+                  class="text-warm-400 hover:text-primary-400 transition-colors"
+                  >Menu</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="text-warm-400 hover:text-primary-400 transition-colors"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a
+                  href="http://lacaislc.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-warm-400 hover:text-primary-400 transition-colors"
+                  >Official Site</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="lg:col-span-4">
+            <h4
+              class="font-serif font-bold text-white text-sm mb-5 tracking-wide"
+            >
+              Visit
+            </h4>
+            <p class="text-sm text-warm-400 mb-2">
+              961 S State St<br />Salt Lake City, UT 84111
+            </p>
+            <a
+              href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-1.5 text-sm text-primary-400 hover:text-primary-300 transition-colors font-medium mt-1"
+            >
+              <i class="fa-solid fa-map-pin text-xs"></i>Get Directions →
+            </a>
+            <div class="flex gap-3 mt-5">
+              <a
+                href="tel:+18013223590"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"
+                ><i class="fa-solid fa-phone text-sm"></i
+              ></a>
+              <a
+                href="http://lacaislc.com"
+                target="_blank"
+                rel="noopener"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"
+                ><i class="fa-solid fa-globe text-sm"></i
+              ></a>
+              <a
+                href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111"
+                target="_blank"
+                rel="noopener"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary-500/15 border border-white/5 flex items-center justify-center text-warm-400 hover:text-primary-400 transition-all"
+                ><i class="fa-solid fa-map-pin text-sm"></i
+              ></a>
+            </div>
+          </div>
         </div>
+        <div
+          class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-warm-600"
+        >
+          <span
+            >&copy; {{ current_year }} Mi La-Cai Noodle House. All rights
+            reserved.</span
+          >
+          <span
+            >Crafted in Salt Lake City
+            <i class="fa-solid fa-heart text-red-500 text-[9px] ml-0.5"></i
+          ></span>
+        </div>
+      </div>
     </footer>
 
     <!-- Floating Call Button -->
-    <a href="tel:+18013223590" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl flex items-center justify-center text-white text-xl shadow-2xl shadow-primary-500/30 hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 animate-[bounce_3s_ease-in-out_infinite]" aria-label="Call us">
-        <i class="fa-solid fa-phone"></i>
+    <a
+      href="tel:+18013223590"
+      class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-2xl flex items-center justify-center text-white text-xl shadow-2xl shadow-primary-500/30 hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 animate-[bounce_3s_ease-in-out_infinite]"
+      aria-label="Call us"
+    >
+      <i class="fa-solid fa-phone"></i>
     </a>
 
     <script>
-        document.getElementById('menu-btn').addEventListener('click', function(){
-            const m = document.getElementById('mobile-menu'); m.classList.toggle('hidden');
-            const i = this.querySelector('i'); i.classList.toggle('fa-bars'); i.classList.toggle('fa-xmark');
+      document
+        .getElementById("menu-btn")
+        .addEventListener("click", function () {
+          const m = document.getElementById("mobile-menu");
+          m.classList.toggle("hidden");
+          const i = this.querySelector("i");
+          i.classList.toggle("fa-bars");
+          i.classList.toggle("fa-xmark");
         });
-        const obs = new IntersectionObserver((e)=>{ e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      const obs = new IntersectionObserver(
+        (e) => {
+          e.forEach((el) => {
+            if (el.isIntersecting) el.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -30px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
     </script>
     {% block scripts %}{% endblock %}
-</body>
+  </body>
 </html>

@@ -1,0 +1,48 @@
+{% extends "admin/base_admin.html" %} {% block title %}Edit Hours — Admin{%
+endblock %} {% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 py-8">
+  <a
+    href="/admin/"
+    class="inline-flex items-center gap-1.5 text-sm text-warm-400 hover:text-primary-500 mb-6 transition-colors"
+  >
+    <i class="fa-solid fa-arrow-left text-xs"></i> Back to Dashboard
+  </a>
+  <h1 class="text-3xl font-serif font-bold text-warm-900 mb-1">Hours</h1>
+  <p class="text-warm-400 text-sm mb-8">Edit operating hours for each day.</p>
+
+  <form
+    method="POST"
+    class="bg-white rounded-2xl p-6 sm:p-8 border border-warm-100/40 shadow-sm space-y-3"
+  >
+    {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+    "Saturday", "Sunday"] %} {% for day in days %}
+    <div
+      class="flex items-center gap-4 p-3 rounded-xl {% if data.hours[day] == 'Closed' %}bg-red-50/30 border border-red-100/50{% else %}bg-warm-50 border border-warm-100/50{% endif %}"
+    >
+      <label class="w-24 text-sm font-semibold text-warm-700 shrink-0"
+        >{{ day }}</label
+      >
+      <input
+        type="text"
+        name="{{ day }}"
+        value="{{ data.hours[day] }}"
+        class="flex-1 px-3 py-2 bg-white border border-warm-200 rounded-lg text-sm text-warm-800 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 {% if data.hours[day] == 'Closed' %}text-red-600 border-red-200{% endif %}"
+      />
+    </div>
+    {% endfor %}
+    <div class="flex items-center gap-3 pt-4">
+      <button
+        type="submit"
+        class="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary-500/20"
+      >
+        <i class="fa-solid fa-save mr-1.5"></i> Save Changes
+      </button>
+      <a
+        href="/admin/"
+        class="px-6 py-2.5 border border-warm-200 text-warm-600 rounded-xl font-semibold text-sm hover:bg-warm-50 transition-all"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %}

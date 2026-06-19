@@ -1,0 +1,346 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "milacai2026"
+  },
+  "site": {
+    "name": "Mi La-Cai Noodle House",
+    "tagline": "Noodle House",
+    "address": "961 S State St, Salt Lake City, UT 84111",
+    "phone": "(801) 322-3590",
+    "phone_link": "+18013223590",
+    "email": "hello@milacai.com",
+    "rating": "4.6",
+    "reviews": "1,900+",
+    "since": "2003",
+    "description": "Family-owned Vietnamese & Chinese restaurant serving Salt Lake City since 2003 — authentic flavors, generous portions, warm hospitality."
+  },
+  "hero": {
+    "badge_text": "★★★★★",
+    "badge_detail": "4.6 · 1,900+ Reviews",
+    "badge_year": "Since 2003",
+    "subtitle": "Chào mừng · 欢迎 · Welcome",
+    "title_line1": "Where Tradition",
+    "title_line2_prefix": "Meets",
+    "title_line2_accent": "Flavor",
+    "description": "Family-owned Vietnamese & Chinese comfort food in the heart of Salt Lake City. Every bowl of pho, every crispy egg roll — crafted with tradition, served with warmth.",
+    "cta_primary": "Explore Our Menu",
+    "cta_secondary": "Find Us",
+    "tags": [
+      { "icon": "fa-tag", "text": "$10–$20 pp", "color": "text-primary-400" },
+      { "icon": "fa-leaf", "text": "Vegan & GF", "color": "text-green-400" },
+      {
+        "icon": "fa-wine-glass",
+        "text": "Beer & Wine",
+        "color": "text-blue-400"
+      }
+    ]
+  },
+  "marquee_items": [
+    "🥟 Egg Rolls",
+    "🍜 Beef Pho",
+    "🦐 Walnut Shrimp",
+    "🥟 Potstickers",
+    "🍜 Chicken Pho",
+    "🥬 Fresh Spring Rolls",
+    "🥡 Kung Pao Chicken",
+    "🍹 Vietnamese Coffee",
+    "🥟 Cream Cheese Wontons",
+    "🍜 Shaking Beef",
+    "🥬 Buddha's Delight",
+    "🥡 Sweet & Sour Pork",
+    "🍜 Wonton Soup"
+  ],
+  "stats": [
+    {
+      "num": "23",
+      "suf": "+",
+      "label": "Years Serving SLC",
+      "icon": "fa-calendar-heart"
+    },
+    { "num": "50", "suf": "+", "label": "Menu Items", "icon": "fa-utensils" },
+    { "num": "4.6", "suf": "★", "label": "Google Rating", "icon": "fa-star" },
+    { "num": "1.9", "suf": "k", "label": "Happy Reviews", "icon": "fa-heart" }
+  ],
+  "specials": [
+    {
+      "img": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&q=85",
+      "name": "Spicy Lemongrass Seafood Noodles",
+      "price": "$16.95",
+      "desc": "Shrimp, squid & mussels wok-tossed in aromatic lemongrass chili broth over chewy egg noodles.",
+      "tag": "🌶️ New",
+      "tagColor": "from-red-500 to-red-600"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=85",
+      "name": "Honey Glazed Walnut Shrimp",
+      "price": "$15.95",
+      "desc": "Jumbo shrimp wok-fried in a honey glaze, topped with candied walnuts & toasted sesame.",
+      "tag": "👑 Signature",
+      "tagColor": "from-primary-500 to-primary-600"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85",
+      "name": "Buddha's Harvest Bowl",
+      "price": "$12.95",
+      "desc": "Seasonal vegetables, crispy tofu & jasmine rice tossed in a light ginger-soy glaze.",
+      "tag": "🌱 Vegan",
+      "tagColor": "from-green-500 to-emerald-600"
+    }
+  ],
+  "story": {
+    "section_title": "Our Story",
+    "title_line1": "Where Vietnam Meets",
+    "title_line2": "Chinese Comfort",
+    "paragraphs": [
+      "For over two decades, Mi La-Cai has been a cherished destination on State Street — bringing together Vietnam's bright, herbaceous flavors and the rich, satisfying warmth of Chinese comfort food.",
+      "Every bowl of pho is simmered for hours. Every egg roll is hand-rolled. Every dish reflects our commitment to authentic recipes, fresh ingredients, and genuine hospitality."
+    ],
+    "features": [
+      { "icon": "fa-leaf", "color": "green", "text": "Vegan Options" },
+      {
+        "icon": "fa-wheat-awn-circle-exclamation",
+        "color": "amber",
+        "text": "Gluten-Free"
+      },
+      { "icon": "fa-wine-glass", "color": "blue", "text": "Beer & Wine" },
+      { "icon": "fa-child", "color": "purple", "text": "Family Friendly" }
+    ],
+    "cta_text": "Find Us on State Street",
+    "award_text": "Best Pho in SLC",
+    "award_subtext": "Since 2003",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85"
+  },
+  "why_different": [
+    {
+      "emoji": "🥬",
+      "icon": "fa-seedling",
+      "title": "Fresh Daily",
+      "desc": "We source the freshest herbs & ingredients every morning. Our broths simmer for 12+ hours — never from a packet.",
+      "gradient": "from-emerald-600 to-green-800"
+    },
+    {
+      "emoji": "👨‍🍳",
+      "icon": "fa-book-open",
+      "title": "Family Recipes",
+      "desc": "Every dish follows traditional recipes passed down through generations. Taste the difference heritage makes.",
+      "gradient": "from-amber-600 to-orange-800"
+    },
+    {
+      "emoji": "🤲",
+      "icon": "fa-heart",
+      "title": "Warm Hospitality",
+      "desc": "We treat every guest like family. Our welcoming atmosphere has earned us 1,900+ glowing reviews over 23 years.",
+      "gradient": "from-rose-600 to-red-800"
+    }
+  ],
+  "menu_categories": [
+    {
+      "emoji": "🍜",
+      "name": "Pho & Soups",
+      "count": "4",
+      "color": "from-amber-500 to-orange-600"
+    },
+    {
+      "emoji": "🥟",
+      "name": "Appetizers",
+      "count": "5",
+      "color": "from-primary-500 to-primary-600"
+    },
+    {
+      "emoji": "🇻🇳",
+      "name": "Vietnamese",
+      "count": "4",
+      "color": "from-red-500 to-red-600"
+    },
+    {
+      "emoji": "🥡",
+      "name": "Chinese",
+      "count": "5",
+      "color": "from-blue-500 to-blue-600"
+    },
+    {
+      "emoji": "🥬",
+      "name": "Vegetarian",
+      "count": "3",
+      "color": "from-green-500 to-emerald-600"
+    },
+    {
+      "emoji": "🍹",
+      "name": "Drinks",
+      "count": "5",
+      "color": "from-purple-500 to-violet-600"
+    }
+  ],
+  "fun_facts": [
+    {
+      "emoji": "⏳",
+      "title": "12+ Hours",
+      "desc": "Our pho broth simmers overnight for deep, complex flavor — never from a powder.",
+      "color": "primary"
+    },
+    {
+      "emoji": "🥟",
+      "title": "Hand-Rolled",
+      "desc": "Every egg roll is individually wrapped by hand each morning, just like grandma taught us.",
+      "color": "amber"
+    },
+    {
+      "emoji": "🌿",
+      "title": "Fresh Herbs Daily",
+      "desc": "We source Thai basil, mint & cilantro from local farms every single morning.",
+      "color": "green"
+    },
+    {
+      "emoji": "🧂",
+      "title": "Secret Family Spice",
+      "desc": "Our signature pho spice blend has been passed down through three generations.",
+      "color": "rose"
+    }
+  ],
+  "dining_steps": [
+    {
+      "num": "01",
+      "emoji": "🪑",
+      "title": "Find Your Seat",
+      "desc": "Walk in or call ahead — casual seating for families & friends."
+    },
+    {
+      "num": "02",
+      "emoji": "📋",
+      "title": "Browse & Order",
+      "desc": "Pick from 50+ dishes — dietary options clearly marked."
+    },
+    {
+      "num": "03",
+      "emoji": "🍜",
+      "title": "Savor & Enjoy",
+      "desc": "Dig into generous portions — add sriracha & hoisin!"
+    },
+    {
+      "num": "04",
+      "emoji": "😊",
+      "title": "Come Back Soon",
+      "desc": "Leave with a full belly — your favorite awaits next time."
+    }
+  ],
+  "testimonials": [
+    {
+      "stars": "★★★★★",
+      "quote": "Best pho in SLC hands down. The broth is incredibly rich — you can tell it's been simmering for hours. Egg rolls are perfectly crispy too!",
+      "name": "Sarah M.",
+      "initial": "S",
+      "gradient": "from-primary-500 to-primary-600"
+    },
+    {
+      "stars": "★★★★★",
+      "quote": "The walnut shrimp is incredible — crispy, sweet, perfectly balanced. Great family atmosphere. We come every week!",
+      "name": "David L.",
+      "initial": "D",
+      "gradient": "from-amber-500 to-orange-600"
+    },
+    {
+      "stars": "★★★★★",
+      "quote": "As someone gluten-free, finding good Asian food is tough — Mi La-Cai has so many options! Vegetable pho is my go-to.",
+      "name": "Emily R.",
+      "initial": "E",
+      "gradient": "from-green-500 to-emerald-600"
+    }
+  ],
+  "gallery": [
+    {
+      "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=85",
+      "caption": "Cozy Dining Room",
+      "span": ""
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85",
+      "caption": "Chef's Presentation",
+      "span": "lg:col-span-2 lg:row-span-2"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=85",
+      "caption": "Warm Lighting",
+      "span": ""
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&q=85",
+      "caption": "Family-Style Dining",
+      "span": "lg:col-span-2"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=500&q=85",
+      "caption": "Vietnamese Coffee",
+      "span": ""
+    }
+  ],
+  "ways_to_dine": [
+    {
+      "icon": "fa-chair",
+      "title": "Dine-In",
+      "desc": "Relax in our warm, casual atmosphere. Perfect for family dinners and catching up with friends.",
+      "color": "primary"
+    },
+    {
+      "icon": "fa-bag-shopping",
+      "title": "Takeout",
+      "desc": "Order ahead and pick up at the counter. All your favorites packed fresh and ready to go.",
+      "color": "amber"
+    },
+    {
+      "icon": "fa-car-side",
+      "title": "Curbside Pickup",
+      "desc": "Call ahead and we'll bring your order to your car. Quick, convenient & contactless.",
+      "color": "green"
+    }
+  ],
+  "values": [
+    {
+      "emoji": "🎯",
+      "color": "primary",
+      "title": "Our Mission",
+      "desc": "To bring authentic Vietnamese & Chinese flavors to Salt Lake City — one bowl of pho and one smile at a time."
+    },
+    {
+      "emoji": "👁️",
+      "color": "amber",
+      "title": "Our Vision",
+      "desc": "To be Salt Lake City's most loved destination for Vietnamese & Chinese comfort food — where every guest feels at home."
+    },
+    {
+      "emoji": "🤝",
+      "color": "rose",
+      "title": "Our Promise",
+      "desc": "Fresh ingredients daily. Authentic family recipes. Warm, welcoming service. Every single time."
+    }
+  ],
+  "social": {
+    "facebook": "1,200+ Likes",
+    "instagram": "2,400+ Followers",
+    "yelp": "4.6★ Rating",
+    "newsletter_placeholder": "Enter your email",
+    "newsletter_disclaimer": "No spam — just delicious updates. Unsubscribe anytime."
+  },
+  "catering": {
+    "title": "Hosting an Event?",
+    "description": "We offer large takeout orders for gatherings, parties & office events. Let us bring authentic Vietnamese & Chinese flavors to your celebration.",
+    "cta": "Call for Catering"
+  },
+  "final_cta": {
+    "pre_title": "Your Table is Waiting",
+    "title_line1": "Ready for the Best Pho",
+    "title_line2": "in Salt Lake City?",
+    "description": "Open six days a week on State Street — lunch & dinner. Walk in or call ahead.",
+    "cta_primary": "Browse Our Menu",
+    "cta_secondary": "Get Directions"
+  },
+  "hours": {
+    "Monday": "11:00 AM – 2:00 PM, 4:00 PM – 9:00 PM",
+    "Tuesday": "11:00 AM – 2:00 PM, 4:00 PM – 9:00 PM",
+    "Wednesday": "11:00 AM – 2:00 PM, 4:00 PM – 9:00 PM",
+    "Thursday": "11:00 AM – 2:00 PM, 4:00 PM – 9:00 PM",
+    "Friday": "11:00 AM – 2:00 PM, 4:00 PM – 9:00 PM",
+    "Saturday": "12:00 PM – 3:00 PM, 4:00 PM – 9:00 PM",
+    "Sunday": "Closed"
+  }
+}
