@@ -1,0 +1,236 @@
+{% extends "base.html" %} {% block title %}Menu — Mi La-Cai Noodle House{%
+endblock %} {% block head_extra %}
+<style>
+  .menu-section:target {
+    scroll-margin-top: 8rem;
+  }
+  .menu-hero {
+    background: linear-gradient(135deg, #1a1f14 0%, #353d2b 40%, #4a5838 100%);
+  }
+</style>
+{% endblock %} {% block content %}
+
+<!-- Menu Hero -->
+<section class="menu-hero relative py-20 md:py-28 overflow-hidden">
+  <div
+    class="absolute inset-0 opacity-[0.04]"
+    style="
+      background-image: radial-gradient(
+        circle at 25px 25px,
+        white 2px,
+        transparent 0
+      );
+      background-size: 50px 50px;
+    "
+  ></div>
+  <div class="absolute top-10 right-10 text-9xl opacity-[0.06]">🍜</div>
+  <div class="absolute bottom-10 left-10 text-8xl opacity-[0.06]">🥟</div>
+  <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+    <span
+      class="text-brand-400 text-sm tracking-[.25em] uppercase font-semibold"
+      >Handcrafted with Love</span
+    >
+    <h1
+      class="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mt-3 mb-5 leading-tight"
+    >
+      Our <span class="gradient-text">Menu</span>
+    </h1>
+    <p class="text-bamboo-200/70 text-lg max-w-2xl mx-auto">
+      Vietnamese &amp; Chinese specialties — all dishes
+      <span class="text-brand-300 font-semibold">$10–$20</span> range · Vegan,
+      vegetarian &amp; gluten-free options marked
+    </p>
+  </div>
+</section>
+
+<!-- Sticky Category Nav -->
+<section
+  class="bg-white/80 backdrop-blur-lg border-b border-gray-100 sticky top-[72px] z-40 shadow-sm"
+>
+  <div class="max-w-7xl mx-auto px-4 py-3 overflow-x-auto scrollbar-hide">
+    <div class="flex gap-2 min-w-max">
+      {% for category in menu_items.keys() %}
+      <a
+        href="#{{ category|replace(' ', '-')|replace('&', 'and')|lower }}"
+        class="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 bg-bamboo-50 text-bamboo-700 hover:bg-brand-50 hover:text-brand-600 border border-transparent hover:border-brand-200"
+      >
+        {{ category }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Menu Sections -->
+<section class="py-16 bg-bamboo-50/50">
+  <div class="max-w-5xl mx-auto px-4 space-y-20">
+    {% for category, items in menu_items.items() %}
+    <div
+      id="{{ category|replace(' ', '-')|replace('&', 'and')|lower }}"
+      class="menu-section reveal"
+    >
+      <!-- Category Header -->
+      <div class="flex items-center gap-6 mb-10">
+        <div>
+          <span
+            class="text-brand-500 font-semibold text-xs tracking-[.2em] uppercase"
+          >
+            {% if 'Appetizer' in category %}🥟{% elif 'Pho' in category %}🍜{%
+            elif 'Vietnam' in category %}🇻🇳{% elif 'Chinese' in category %}🥡{%
+            elif 'Vegetarian' in category %}🥬{% elif 'Drink' in category %}🍹{%
+            endif %}
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-display font-bold text-bamboo-900 mt-1"
+          >
+            {{ category }}
+          </h2>
+        </div>
+        <div
+          class="flex-1 h-px bg-gradient-to-r from-bamboo-300 to-transparent"
+        ></div>
+        <span
+          class="text-sm text-gray-400 font-medium bg-white px-3 py-1.5 rounded-full shadow-sm"
+          >{{ items|length }} items</span
+        >
+      </div>
+
+      <!-- Items Grid -->
+      <div class="grid gap-5">
+        {% for item in items %}
+        <div
+          class="group bg-white rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 hover:border-brand-100 flex flex-col sm:flex-row sm:items-center gap-4 card-lift"
+        >
+          <!-- Food Thumbnail -->
+          <div
+            class="w-full sm:w-28 h-24 sm:h-24 rounded-xl overflow-hidden flex-shrink-0 bg-bamboo-100 relative"
+          >
+            {% set img_map = { 'Crispy Fried Pork Egg Rolls':
+            'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=200&q=80',
+            'Fresh Spring Rolls':
+            'https://images.unsplash.com/photo-1559360084-4ba56cff18e9?w=200&q=80',
+            'Potstickers':
+            'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=200&q=80',
+            'Beef Pho':
+            'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=200&q=80',
+            'Chicken Pho':
+            'https://images.unsplash.com/photo-1577131264396-8e4cbb3165e2?w=200&q=80',
+            'Vegetable Pho':
+            'https://images.unsplash.com/photo-1547928576-b687bc5e4c5c?w=200&q=80',
+            'Lemongrass Chicken':
+            'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=200&q=80',
+            'Shaking Beef':
+            'https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=200&q=80',
+            'Walnut Shrimp':
+            'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80',
+            'House Stir-Fried Beef':
+            'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&q=80',
+            'Kung Pao Chicken':
+            'https://images.unsplash.com/photo-1525755662778-989d0524087e?w=200&q=80',
+            'Mapo Tofu':
+            'https://images.unsplash.com/photo-1582452919408-f03f5e4a922a?w=200&q=80',
+            'Buddha\'s Delight':
+            'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=200&q=80',
+            'Vegetable Fried Rice':
+            'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&q=80',
+            'Vietnamese Iced Coffee':
+            'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=200&q=80',
+            'Thai Iced Tea':
+            'https://images.unsplash.com/photo-1561336318-0296c201c72b?w=200&q=80',
+            } %} {% set img_url = img_map.get(item.name, '') %} {% if img_url %}
+            <img
+              src="{{ img_url }}"
+              alt="{{ item.name }}"
+              class="food-card-img w-full h-full object-cover"
+              loading="lazy"
+            />
+            {% else %}
+            <div class="flex items-center justify-center h-full text-3xl">
+              {% if 'Beef' in item.name or 'Chicken' in item.name or 'Shrimp' in
+              item.name %}🥩 {% elif 'Egg Roll' in item.name or 'Spring Roll' in
+              item.name %}🥟 {% elif 'Pho' in item.name %}🍜 {% elif 'Tofu' in
+              item.name %}🧈 {% elif 'Rice' in item.name %}🍚 {% elif 'Coffee'
+              in item.name or 'Tea' in item.name %}☕ {% else %}🍽️{% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Item Details -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <h3
+                class="text-lg font-bold text-bamboo-900 group-hover:text-brand-600 transition-colors"
+              >
+                {{ item.name }}
+              </h3>
+              {% for tag in item.tags %} {% if tag == 'vegan' %}
+              <span
+                class="text-[10px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold uppercase tracking-wider"
+                >Vegan</span
+              >
+              {% elif tag == 'vegetarian' %}
+              <span
+                class="text-[10px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold uppercase tracking-wider"
+                >Veg</span
+              >
+              {% elif tag == 'gluten-free' %}
+              <span
+                class="text-[10px] px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full font-semibold uppercase tracking-wider"
+                >GF</span
+              >
+              {% endif %} {% endfor %}
+            </div>
+            <p class="text-sm text-gray-500 leading-relaxed">{{ item.desc }}</p>
+          </div>
+
+          <!-- Price -->
+          <div class="flex-shrink-0 text-right">
+            <span class="text-2xl font-display font-bold text-brand-600"
+              >${{ "%.2f"|format(item.price) }}</span
+            >
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Dietary Legend -->
+<section class="py-12 bg-white border-t border-gray-100">
+  <div class="max-w-3xl mx-auto px-4 text-center reveal">
+    <h3 class="font-display font-bold text-2xl text-bamboo-900 mb-6">
+      Dietary Guide
+    </h3>
+    <div class="flex flex-wrap justify-center gap-8 text-sm">
+      <div class="flex items-center gap-2">
+        <span
+          class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full font-semibold text-xs uppercase tracking-wider"
+          >Vegan</span
+        >
+        <span class="text-gray-500">Plant-based, no animal products</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span
+          class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full font-semibold text-xs uppercase tracking-wider"
+          >Veg</span
+        >
+        <span class="text-gray-500">No meat, may contain dairy/eggs</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span
+          class="px-2.5 py-1 bg-amber-100 text-amber-700 rounded-full font-semibold text-xs uppercase tracking-wider"
+          >GF</span
+        >
+        <span class="text-gray-500">Gluten-free or can be modified</span>
+      </div>
+    </div>
+    <p class="text-xs text-gray-400 mt-6">
+      Please inform your server of any allergies or dietary restrictions. Menu
+      items and prices subject to change.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

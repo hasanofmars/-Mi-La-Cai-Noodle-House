@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Mi La-Cai Noodle House{% endblock %}</title>
+    <meta
+      name="description"
+      content="Family-friendly Vietnamese & Chinese restaurant in Salt Lake City. Pho, Walnut Shrimp, Egg Rolls & more. 4.6★ from 1,900+ reviews."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#fff8f0",
+                100: "#ffedd5",
+                200: "#ffd9a3",
+                300: "#ffbf66",
+                400: "#ffa333",
+                500: "#f97316",
+                600: "#ea580c",
+                700: "#c2410c",
+                800: "#9a3412",
+                900: "#7c2d12",
+                950: "#431407",
+              },
+              bamboo: {
+                50: "#f7f8f4",
+                100: "#eaede2",
+                200: "#d5dbc5",
+                300: "#b7c39e",
+                400: "#96a877",
+                500: "#788e5a",
+                600: "#5e7045",
+                700: "#4a5838",
+                800: "#3d4830",
+                900: "#353d2b",
+                950: "#1a1f14",
+              },
+              gold: { 400: "#fbbf24", 500: "#f59e0b", 600: "#d97706" },
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "Georgia", "serif"],
+              body: ['"Inter"', "system-ui", "-apple-system", "sans-serif"],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.8s ease-out forwards",
+              "fade-up": "fadeUp 0.8s ease-out forwards",
+              float: "float 6s ease-in-out infinite",
+              "pulse-soft": "pulseSoft 3s ease-in-out infinite",
+            },
+            keyframes: {
+              fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+              fadeUp: {
+                "0%": { opacity: "0", transform: "translateY(40px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              pulseSoft: {
+                "0%, 100%": { opacity: "1" },
+                "50%": { opacity: "0.7" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .reveal-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.85);
+        transition: all 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #f97316;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 70%;
+      }
+      .card-lift {
+        transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .card-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #f97316 0%,
+          #f59e0b 50%,
+          #ea580c 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .food-card-img {
+        transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .food-card:hover .food-card-img {
+        transform: scale(1.08);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f7f8f4;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #b7c39e;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #788e5a;
+      }
+    </style>
+    {% block head_extra %}{% endblock %}
+  </head>
+  <body
+    class="font-body bg-bamboo-50 text-gray-800 min-h-screen flex flex-col antialiased"
+  >
+    <!-- Top Bar -->
+    <div class="bg-bamboo-950 text-bamboo-300 text-xs py-2 hidden sm:block">
+      <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center gap-6">
+          <span
+            ><i class="fa-solid fa-location-dot text-brand-400 mr-1"></i> 961 S
+            State St, Salt Lake City, UT 84111</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-yellow-400 mr-1"></i> 4.6 Stars ·
+            1,900+ Reviews</span
+          >
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="tel:+18013223590" class="hover:text-brand-400 transition"
+            ><i class="fa-solid fa-phone mr-1"></i> (801) 322-3590</a
+          >
+          <span class="text-bamboo-600">|</span>
+          <span>Mon–Sat: Lunch &amp; Dinner · Sun: Closed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="sticky top-0 z-50 transition-all duration-500"
+      style="
+        background: rgba(26, 31, 20, 0.88);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      "
+    >
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-[72px]">
+          <a href="/" class="flex items-center gap-3 group">
+            <div
+              class="w-11 h-11 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-2xl shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform"
+            >
+              🍜
+            </div>
+            <div>
+              <span
+                class="text-xl font-display font-bold text-white tracking-tight leading-none block"
+                >Mi La-Cai</span
+              >
+              <span
+                class="text-[10px] text-brand-300 tracking-[.25em] uppercase leading-none"
+                >Noodle House</span
+              >
+            </div>
+          </a>
+          <div class="hidden lg:flex items-center gap-0">
+            <a
+              href="/"
+              class="nav-link px-5 py-2 text-sm font-medium text-bamboo-100 hover:text-white transition-colors {% if request.path == '/' %}active text-white{% endif %}"
+              >Home</a
+            >
+            <a
+              href="/menu"
+              class="nav-link px-5 py-2 text-sm font-medium text-bamboo-100 hover:text-white transition-colors {% if request.path == '/menu' %}active text-white{% endif %}"
+              >Menu</a
+            >
+            <a
+              href="/contact"
+              class="nav-link px-5 py-2 text-sm font-medium text-bamboo-100 hover:text-white transition-colors {% if request.path == '/contact' %}active text-white{% endif %}"
+              >Hours &amp; Location</a
+            >
+          </div>
+          <div class="hidden lg:flex items-center gap-3">
+            <a
+              href="tel:+18013223590"
+              class="px-5 py-2.5 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 rounded-xl text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-all duration-300 hover:shadow-brand-500/40"
+            >
+              <i class="fa-solid fa-phone mr-1.5"></i> (801) 322-3590
+            </a>
+          </div>
+          <button
+            id="mobile-menu-btn"
+            class="lg:hidden text-white text-2xl p-2 hover:text-brand-400 transition-colors"
+            aria-label="Toggle menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div
+          id="mobile-menu"
+          class="lg:hidden hidden pb-5 space-y-1 border-t border-white/10 pt-4"
+        >
+          <a
+            href="/"
+            class="block px-4 py-3 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition font-medium text-sm {% if request.path == '/' %}bg-white/10 text-white{% endif %}"
+            ><i class="fa-solid fa-house mr-2 w-5 text-center"></i> Home</a
+          >
+          <a
+            href="/menu"
+            class="block px-4 py-3 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition font-medium text-sm {% if request.path == '/menu' %}bg-white/10 text-white{% endif %}"
+            ><i class="fa-solid fa-utensils mr-2 w-5 text-center"></i> Menu</a
+          >
+          <a
+            href="/contact"
+            class="block px-4 py-3 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition font-medium text-sm {% if request.path == '/contact' %}bg-white/10 text-white{% endif %}"
+            ><i class="fa-solid fa-clock mr-2 w-5 text-center"></i> Hours &amp;
+            Location</a
+          >
+          <a
+            href="tel:+18013223590"
+            class="block px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 rounded-xl font-semibold text-white text-center text-sm mt-2"
+            ><i class="fa-solid fa-phone mr-1.5"></i> Call Now</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-1">{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer class="relative bg-bamboo-950 text-bamboo-200 overflow-hidden">
+      <div
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 via-gold-400 to-brand-500"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 py-16 relative z-10">
+        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-10">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-xl"
+              >
+                🍜
+              </div>
+              <div>
+                <span class="text-lg font-display font-bold text-white"
+                  >Mi La-Cai</span
+                ><span
+                  class="block text-[10px] text-brand-400 tracking-[.2em] uppercase"
+                  >Noodle House</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-bamboo-400 leading-relaxed mb-4">
+              Family-friendly Vietnamese &amp; Chinese staple in Salt Lake City
+              since 2003 — generous portions, warm atmosphere.
+            </p>
+            <div class="flex items-center gap-3 mb-5">
+              <span
+                class="flex items-center gap-1 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-xs text-yellow-400 font-semibold"
+                ><i class="fa-solid fa-star"></i> 4.6</span
+              >
+              <span class="text-xs text-bamboo-500">~1,900 Google reviews</span>
+            </div>
+            <div class="flex gap-2">
+              <a
+                href="http://lacaislc.com"
+                target="_blank"
+                rel="noopener"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-500/20 border border-white/10 flex items-center justify-center text-bamboo-300 hover:text-brand-400 transition-all"
+                ><i class="fa-solid fa-globe text-sm"></i
+              ></a>
+              <a
+                href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111"
+                target="_blank"
+                rel="noopener"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-500/20 border border-white/10 flex items-center justify-center text-bamboo-300 hover:text-brand-400 transition-all"
+                ><i class="fa-solid fa-map-pin text-sm"></i
+              ></a>
+              <a
+                href="tel:+18013223590"
+                class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-500/20 border border-white/10 flex items-center justify-center text-bamboo-300 hover:text-brand-400 transition-all"
+                ><i class="fa-solid fa-phone text-sm"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4
+              class="font-display font-bold text-white text-base mb-5 flex items-center gap-2"
+            >
+              <span
+                class="w-7 h-7 bg-brand-500/20 rounded-lg flex items-center justify-center text-brand-400 text-xs"
+                ><i class="fa-regular fa-clock"></i
+              ></span>
+              Hours
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li class="flex justify-between">
+                <span class="text-bamboo-300">Mon – Fri</span
+                ><span class="text-bamboo-400">11 AM – 2 PM, 4 – 9 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-bamboo-300">Saturday</span
+                ><span class="text-bamboo-400">12 – 3 PM, 4 – 9 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-red-400">Sunday</span
+                ><span class="text-red-400/70">Closed</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-display font-bold text-white text-base mb-5 flex items-center gap-2"
+            >
+              <span
+                class="w-7 h-7 bg-brand-500/20 rounded-lg flex items-center justify-center text-brand-400 text-xs"
+                ><i class="fa-solid fa-link"></i
+              ></span>
+              Quick Links
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="/"
+                  class="text-bamboo-400 hover:text-brand-400 transition-colors flex items-center gap-2"
+                  ><i
+                    class="fa-solid fa-chevron-right text-[10px] text-brand-500"
+                  ></i>
+                  Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/menu"
+                  class="text-bamboo-400 hover:text-brand-400 transition-colors flex items-center gap-2"
+                  ><i
+                    class="fa-solid fa-chevron-right text-[10px] text-brand-500"
+                  ></i>
+                  Full Menu</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="text-bamboo-400 hover:text-brand-400 transition-colors flex items-center gap-2"
+                  ><i
+                    class="fa-solid fa-chevron-right text-[10px] text-brand-500"
+                  ></i>
+                  Contact &amp; Directions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="http://lacaislc.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-bamboo-400 hover:text-brand-400 transition-colors flex items-center gap-2"
+                  ><i
+                    class="fa-solid fa-chevron-right text-[10px] text-brand-500"
+                  ></i>
+                  Official Website</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-display font-bold text-white text-base mb-5 flex items-center gap-2"
+            >
+              <span
+                class="w-7 h-7 bg-brand-500/20 rounded-lg flex items-center justify-center text-brand-400 text-xs"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+              Visit Us
+            </h4>
+            <p class="text-sm text-bamboo-400 mb-3">
+              961 S State St<br />Salt Lake City, UT 84111<br />United States
+            </p>
+            <a
+              href="https://maps.google.com/?q=961+S+State+St,+Salt+Lake+City,+UT+84111"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 transition-colors font-medium"
+              ><i class="fa-solid fa-map-pin"></i> Get Directions →</a
+            >
+            <p class="mt-4 text-xs text-bamboo-600">
+              💳 $10–$20 per person <span class="mx-1.5">·</span> 🍽️ Dine-in ·
+              Takeout · Curbside
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5">
+        <div
+          class="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-bamboo-600"
+        >
+          <span
+            >&copy; {{ current_year }} Mi La-Cai Noodle House. All rights
+            reserved.</span
+          >
+          <span
+            >Crafted with
+            <i class="fa-solid fa-heart text-red-500 text-[10px]"></i> in Salt
+            Lake City</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .getElementById("mobile-menu-btn")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          menu.classList.toggle("hidden");
+          const icon = this.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-xmark");
+        });
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px",
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      }, observerOptions);
+      document
+        .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+        .forEach((el) => observer.observe(el));
+    </script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
