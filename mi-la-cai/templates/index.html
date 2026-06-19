@@ -2,8 +2,7 @@
 Chinese in Salt Lake City{% endblock %} {% block content %}
 
 <!-- Hero Section -->
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-  <!-- Background Image -->
+<section class="relative min-h-screen flex items-center overflow-hidden">
   <div class="absolute inset-0 z-0">
     <img
       src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=1920&q=80"
@@ -11,19 +10,18 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
       class="w-full h-full object-cover"
     />
     <div
-      class="absolute inset-0 hero-overlay"
+      class="absolute inset-0"
       style="
         background: linear-gradient(
           180deg,
-          rgba(26, 31, 20, 0.92) 0%,
-          rgba(26, 31, 20, 0.7) 50%,
-          rgba(26, 31, 20, 0.88) 100%
+          rgba(26, 31, 20, 0.93) 0%,
+          rgba(26, 31, 20, 0.68) 50%,
+          rgba(26, 31, 20, 0.9) 100%
         );
       "
     ></div>
-    <!-- Subtle pattern -->
     <div
-      class="absolute inset-0 opacity-[0.04]"
+      class="absolute inset-0 opacity-[0.03]"
       style="
         background-image: radial-gradient(
           circle at 25px 25px,
@@ -35,57 +33,64 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
     ></div>
   </div>
 
-  <!-- Floating Food Elements -->
+  <!-- Floating Elements (Nyonya Tingkat style) -->
   <div
-    class="absolute top-[15%] right-[8%] z-10 animate-float hidden xl:block"
+    class="absolute top-[12%] right-[5%] z-10 animate-float hidden xl:block"
     style="animation-delay: 0s"
   >
     <div
-      class="w-24 h-24 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-5xl shadow-2xl border border-white/10"
+      class="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-4xl shadow-2xl border border-white/10"
     >
       🥟
     </div>
   </div>
   <div
-    class="absolute bottom-[20%] left-[5%] z-10 animate-float hidden xl:block"
-    style="animation-delay: 2s"
+    class="absolute bottom-[25%] left-[3%] z-10 animate-float hidden xl:block"
+    style="animation-delay: 2.5s"
   >
     <div
-      class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-4xl shadow-2xl border border-white/10"
+      class="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-3xl shadow-2xl border border-white/10"
     >
       🥢
     </div>
   </div>
   <div
-    class="absolute top-[25%] left-[12%] z-10 animate-float hidden xl:block"
-    style="animation-delay: 4s"
+    class="absolute top-[30%] left-[10%] z-10 animate-float hidden xl:block"
+    style="animation-delay: 1.2s"
   >
     <div
-      class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-3xl shadow-2xl border border-white/10"
+      class="w-14 h-14 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-2xl shadow-2xl border border-white/10"
     >
       🌶️
     </div>
   </div>
 
-  <!-- Hero Content -->
   <div class="max-w-7xl mx-auto px-4 py-20 relative z-20 w-full">
     <div class="max-w-3xl">
       <!-- Badge -->
-      <div class="animate-fade-in mb-8">
+      <div class="animate-fade-in mb-6">
         <span
-          class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500/15 backdrop-blur-sm border border-brand-500/30 rounded-full text-brand-300 text-sm font-semibold tracking-wide"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500/15 backdrop-blur-sm border border-brand-500/25 rounded-full text-brand-300 text-sm font-semibold tracking-wide"
         >
-          <span class="flex items-center gap-1 text-yellow-400 text-xs"
-            >★ ★ ★ ★ <span class="text-yellow-300/70">★</span></span
+          <span class="flex items-center gap-0.5 text-yellow-400 text-xs"
+            >★ ★ ★ ★ <span class="text-yellow-300/50">★</span></span
           >
-          <span class="text-white/40">|</span>
-          4.6 Stars · 1,900+ Google Reviews
+          <span class="text-white/30">|</span>
+          <i class="fa-solid fa-medal text-yellow-400 text-xs"></i> Top Rated in
+          SLC
         </span>
       </div>
 
-      <!-- Main Heading -->
+      <!-- Multilingual Welcome (Banana Bistro style) -->
+      <div
+        class="animate-fade-up text-sm text-brand-300/60 tracking-[.3em] uppercase font-medium mb-3"
+        style="animation-delay: 0.1s"
+      >
+        Chào mừng · 欢迎光临 · Welcome
+      </div>
+
       <h1
-        class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.05] mb-6 animate-fade-up"
+        class="text-5xl sm:text-6xl lg:text-8xl font-display font-bold text-white leading-[1.02] mb-6 animate-fade-up"
         style="animation-delay: 0.2s"
       >
         Authentic<br />
@@ -93,17 +98,15 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
         Comfort Food
       </h1>
 
-      <!-- Subtitle -->
       <p
-        class="text-lg sm:text-xl text-bamboo-200/80 leading-relaxed mb-10 max-w-xl animate-fade-up"
+        class="text-lg sm:text-xl text-bamboo-200/70 leading-relaxed mb-10 max-w-xl animate-fade-up"
         style="animation-delay: 0.4s"
       >
         A Salt Lake City institution since 2003. Generous portions of pho,
-        walnut shrimp, crispy egg rolls &amp; more — served in a warm, welcoming
-        atmosphere.
+        walnut shrimp, crispy egg rolls &amp; more — served with warmth in a
+        family-friendly atmosphere.
       </p>
 
-      <!-- CTA Buttons -->
       <div
         class="flex flex-col sm:flex-row gap-4 animate-fade-up"
         style="animation-delay: 0.6s"
@@ -132,90 +135,90 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
       >
         <span
           class="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/80 text-sm border border-white/10"
+          ><i class="fa-solid fa-dollar-sign text-brand-400"></i> $10–$20
+          pp</span
         >
-          <i class="fa-solid fa-dollar-sign text-brand-400"></i> $10–$20 per
-          person
-        </span>
         <span
           class="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/80 text-sm border border-white/10"
+          ><i class="fa-solid fa-leaf text-green-400"></i> Vegan &amp; GF</span
         >
-          <i class="fa-solid fa-leaf text-green-400"></i> Vegan &amp; GF Options
-        </span>
         <span
           class="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/80 text-sm border border-white/10"
+          ><i class="fa-solid fa-wine-glass text-blue-400"></i> Beer &amp;
+          Wine</span
         >
-          <i class="fa-solid fa-wine-glass text-blue-400"></i> Beer &amp; Wine
-        </span>
+        <span
+          class="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/80 text-sm border border-white/10"
+          ><i class="fa-solid fa-child text-purple-400"></i> Family
+          Friendly</span
+        >
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
   <div
     class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-pulse-soft"
   >
-    <span class="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
+    <span class="text-white/40 text-xs tracking-[.3em] uppercase">Scroll</span>
     <div
-      class="mt-2 mx-auto w-5 h-8 rounded-full border-2 border-white/20 flex justify-center"
+      class="mt-2 mx-auto w-5 h-8 rounded-full border-2 border-white/15 flex justify-center"
     >
       <div class="w-1 h-2 bg-brand-400 rounded-full mt-1 animate-bounce"></div>
     </div>
   </div>
 </section>
 
-<!-- Stats Counter Bar -->
+<!-- Stats Counter Bar (UniDovo style data-driven cards) -->
 <section class="relative -mt-1 bg-white z-30">
   <div class="max-w-5xl mx-auto px-4">
-    <div
-      class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 -translate-y-8"
-    >
+    <div class="grid grid-cols-2 md:grid-cols-4 -translate-y-10">
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1 reveal-scale"
-      >
-        <div class="text-3xl font-bold text-bamboo-900 font-display">
-          $10<span class="text-brand-500">–</span>$20
-        </div>
-        <div
-          class="text-xs text-gray-400 mt-1 font-medium uppercase tracking-wider"
-        >
-          Per Person
-        </div>
-      </div>
-      <div
-        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1 reveal-scale"
-        style="transition-delay: 0.1s"
-      >
-        <div class="text-3xl font-bold text-bamboo-900 font-display">
-          4.6 <i class="fa-solid fa-star text-yellow-400 text-lg"></i>
-        </div>
-        <div
-          class="text-xs text-gray-400 mt-1 font-medium uppercase tracking-wider"
-        >
-          Google Rating
-        </div>
-      </div>
-      <div
-        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1 reveal-scale"
-        style="transition-delay: 0.2s"
+        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1.5 reveal-scale border border-gray-50"
       >
         <div class="text-3xl font-bold text-bamboo-900 font-display">
           23<span class="text-brand-500">+</span>
         </div>
         <div
-          class="text-xs text-gray-400 mt-1 font-medium uppercase tracking-wider"
+          class="text-xs text-gray-400 mt-1.5 font-semibold uppercase tracking-wider"
         >
           Years Serving SLC
         </div>
       </div>
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1 reveal-scale"
+        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1.5 reveal-scale border border-gray-50"
+        style="transition-delay: 0.1s"
+      >
+        <div class="text-3xl font-bold text-bamboo-900 font-display">
+          50<span class="text-brand-500">+</span>
+        </div>
+        <div
+          class="text-xs text-gray-400 mt-1.5 font-semibold uppercase tracking-wider"
+        >
+          Menu Items
+        </div>
+      </div>
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1.5 reveal-scale border border-gray-50"
+        style="transition-delay: 0.2s"
+      >
+        <div class="text-3xl font-bold text-bamboo-900 font-display">
+          4.6 <i class="fa-solid fa-star text-yellow-400 text-base"></i>
+        </div>
+        <div
+          class="text-xs text-gray-400 mt-1.5 font-semibold uppercase tracking-wider"
+        >
+          Google Rating
+        </div>
+      </div>
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 text-center m-1.5 reveal-scale border border-gray-50"
         style="transition-delay: 0.3s"
       >
         <div class="text-3xl font-bold text-bamboo-900 font-display">
           1.9<span class="text-brand-500">k</span>
         </div>
         <div
-          class="text-xs text-gray-400 mt-1 font-medium uppercase tracking-wider"
+          class="text-xs text-gray-400 mt-1.5 font-semibold uppercase tracking-wider"
         >
           Happy Reviews
         </div>
@@ -224,82 +227,90 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
   </div>
 </section>
 
-<!-- Featured Dishes Gallery -->
-<section class="py-16 md:py-20 bg-white">
+<!-- Signature Dishes Carousel (Nyonya Tingkat style) -->
+<section class="py-16 md:py-20 bg-bamboo-50/50">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-14 reveal">
       <span
         class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-        >Customer Favorites</span
+        >🍽️ Customer Favorites</span
       >
       <h2
         class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
       >
         Signature Dishes
       </h2>
-      <p class="text-gray-500 max-w-xl mx-auto">
-        Every dish crafted with authentic recipes and the freshest ingredients
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
+      <p class="text-gray-500 mt-4 max-w-xl mx-auto">
+        Every dish crafted with authentic recipes &amp; the freshest ingredients
       </p>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Card 1: Beef Pho -->
+      <!-- Card 1 -->
       <div
-        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale"
+        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale border border-gray-50"
       >
-        <div class="relative overflow-hidden h-56">
+        <div class="relative overflow-hidden h-60">
           <img
             src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80"
             alt="Beef Pho"
             class="food-card-img w-full h-full object-cover"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
           ></div>
-          <div
-            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-600 font-bold px-3 py-1.5 rounded-full text-sm shadow-lg"
-          >
-            ⭐ Top Seller
+          <div class="absolute top-4 left-4">
+            <span
+              class="px-3 py-1.5 bg-brand-500 text-white text-xs font-bold rounded-full shadow-lg"
+              >👑 Signature</span
+            >
           </div>
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-display font-bold text-xl">Beef Pho</h3>
-            <span class="text-brand-300 font-semibold">$12.95</span>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="flex items-center gap-1 mb-1 text-yellow-400 text-xs">
+              🌶️ Mild
+            </div>
+            <h3 class="font-display font-bold text-2xl">Beef Pho</h3>
+            <span class="text-brand-300 font-semibold text-lg">$12.95</span>
           </div>
         </div>
         <div class="p-5">
           <p class="text-gray-500 text-sm leading-relaxed">
-            Rich 12-hour bone broth with rice noodles, rare sliced beef,
-            brisket, fresh herbs &amp; bean sprouts.
+            Rich 12-hour bone broth with rice noodles, rare sliced beef, brisket
+            &amp; fresh herbs.
           </p>
           <div class="flex gap-2 mt-3">
             <span
-              class="text-xs px-2 py-1 bg-amber-50 text-amber-600 rounded-full"
+              class="text-xs px-2 py-1 bg-amber-50 text-amber-600 rounded-full font-medium"
               >Gluten-Free</span
             >
           </div>
         </div>
       </div>
-      <!-- Card 2: Walnut Shrimp -->
+      <!-- Card 2 -->
       <div
-        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale"
+        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale border border-gray-50"
         style="transition-delay: 0.15s"
       >
-        <div class="relative overflow-hidden h-56">
+        <div class="relative overflow-hidden h-60">
           <img
             src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80"
             alt="Walnut Shrimp"
             class="food-card-img w-full h-full object-cover"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
           ></div>
-          <div
-            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-600 font-bold px-3 py-1.5 rounded-full text-sm shadow-lg"
-          >
-            🔥 Popular
+          <div class="absolute top-4 left-4">
+            <span
+              class="px-3 py-1.5 bg-amber-500 text-white text-xs font-bold rounded-full shadow-lg"
+              >🔥 Bestseller</span
+            >
           </div>
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-display font-bold text-xl">Walnut Shrimp</h3>
-            <span class="text-brand-300 font-semibold">$15.95</span>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <h3 class="font-display font-bold text-2xl">Walnut Shrimp</h3>
+            <span class="text-brand-300 font-semibold text-lg">$15.95</span>
           </div>
         </div>
         <div class="p-5">
@@ -309,33 +320,34 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
           </p>
         </div>
       </div>
-      <!-- Card 3: Egg Rolls -->
+      <!-- Card 3 -->
       <div
-        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale"
+        class="food-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-scale border border-gray-50"
         style="transition-delay: 0.3s"
       >
-        <div class="relative overflow-hidden h-56">
+        <div class="relative overflow-hidden h-60">
           <img
             src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&q=80"
-            alt="Crispy Egg Rolls"
+            alt="Egg Rolls"
             class="food-card-img w-full h-full object-cover"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
           ></div>
-          <div
-            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-600 font-bold px-3 py-1.5 rounded-full text-sm shadow-lg"
-          >
-            ✨ Must Try
+          <div class="absolute top-4 left-4">
+            <span
+              class="px-3 py-1.5 bg-green-600 text-white text-xs font-bold rounded-full shadow-lg"
+              >⭐ Popular</span
+            >
           </div>
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-display font-bold text-xl">Pork Egg Rolls</h3>
-            <span class="text-brand-300 font-semibold">$7.95</span>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <h3 class="font-display font-bold text-2xl">Pork Egg Rolls</h3>
+            <span class="text-brand-300 font-semibold text-lg">$7.95</span>
           </div>
         </div>
         <div class="p-5">
           <p class="text-gray-500 text-sm leading-relaxed">
-            Crispy golden-fried pork &amp; vegetable egg rolls. Served with our
+            Crispy golden-fried pork &amp; vegetable egg rolls with our
             signature nuoc cham dipping sauce.
           </p>
         </div>
@@ -344,7 +356,7 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
     <div class="text-center mt-10 reveal">
       <a
         href="/menu"
-        class="inline-flex items-center gap-2 px-8 py-3.5 bg-bamboo-50 hover:bg-bamboo-100 border border-bamboo-200 text-bamboo-700 rounded-2xl font-semibold transition-all"
+        class="inline-flex items-center gap-2 px-8 py-3.5 bg-bamboo-50 hover:bg-bamboo-100 border-2 border-bamboo-200 text-bamboo-700 rounded-2xl font-semibold transition-all hover:border-brand-300"
       >
         View Full Menu <i class="fa-solid fa-arrow-right text-sm"></i>
       </a>
@@ -352,11 +364,82 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
   </div>
 </section>
 
-<!-- About / Story -->
-<section class="py-16 md:py-24 bg-bamboo-50">
+<!-- Why We're Different (Nyonya Tingkat style 3-pillar) -->
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-14 reveal">
+      <span
+        class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
+        >🌟 Why Choose Us</span
+      >
+      <h2
+        class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
+      >
+        Why We're Different
+      </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div
+        class="text-center bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
+      >
+        <div
+          class="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 text-green-600 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg"
+        >
+          🥬
+        </div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Fresh Ingredients Daily
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          We source the freshest herbs, vegetables &amp; meats every morning.
+          Our broths simmer for 12+ hours — never from a packet.
+        </p>
+      </div>
+      <div
+        class="text-center bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
+        style="transition-delay: 0.1s"
+      >
+        <div
+          class="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 text-orange-600 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg"
+        >
+          👨‍🍳
+        </div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Authentic Family Recipes
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Every dish follows traditional recipes passed down through
+          generations. Taste the difference that heritage &amp; love make.
+        </p>
+      </div>
+      <div
+        class="text-center bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
+        style="transition-delay: 0.2s"
+      >
+        <div
+          class="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg"
+        >
+          🤲
+        </div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Warm Hospitality
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          We treat every guest like family. Our casual, welcoming atmosphere has
+          earned us 1,900+ glowing reviews.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Story (enhanced) -->
+<section class="py-16 md:py-24 bg-bamboo-50/50">
   <div class="max-w-7xl mx-auto px-4">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <!-- Image Side -->
       <div class="relative reveal-left">
         <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
           <img
@@ -365,9 +448,8 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
             class="w-full aspect-[4/5] object-cover"
           />
         </div>
-        <!-- Floating card -->
         <div
-          class="absolute -bottom-8 -right-4 z-20 bg-white rounded-2xl shadow-2xl p-5 flex items-center gap-4"
+          class="absolute -bottom-6 -right-4 z-20 bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4"
         >
           <div
             class="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-600 rounded-xl flex items-center justify-center text-white text-xl"
@@ -383,22 +465,19 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
             <div class="font-bold text-bamboo-900">Best Pho in SLC 2024</div>
           </div>
         </div>
-        <!-- Decorative element -->
         <div
           class="absolute -top-6 -left-6 w-32 h-32 border-2 border-brand-200 rounded-3xl -z-0"
         ></div>
       </div>
-      <!-- Text Side -->
       <div class="reveal-right">
         <span
           class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-          >Our Story</span
+          >📖 Our Story</span
         >
         <h2
           class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-6 leading-tight"
         >
-          Where Vietnam Meets<br />
-          <span class="gradient-text">Chinese Comfort</span>
+          Where Vietnam Meets <span class="gradient-text">Chinese Comfort</span>
         </h2>
         <div
           class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mb-8"
@@ -407,58 +486,196 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
           For over two decades, Mi La-Cai Noodle House has been a cherished
           destination on State Street, bringing together the bright, herbaceous
           flavors of Vietnamese cuisine and the rich, satisfying warmth of
-          Chinese comfort food.
+          Chinese comfort food — all under one roof.
         </p>
         <p class="text-gray-500 leading-relaxed mb-8">
-          Every bowl of pho is simmered for hours. Every egg roll is
-          hand-rolled. Every dish reflects our commitment to authentic recipes,
-          fresh ingredients, and the kind of hospitality that's earned us a
-          loyal following and nearly 1,900 glowing reviews.
+          Every bowl of pho is simmered for hours. Every egg roll is hand-rolled
+          with care. Every dish reflects our commitment to authentic recipes,
+          fresh ingredients, and the kind of hospitality that's earned us nearly
+          1,900 glowing reviews.
         </p>
         <div class="grid grid-cols-2 gap-4 mb-8">
           <div class="flex items-center gap-3">
             <span
               class="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center"
-              ><i class="fa-solid fa-leaf"></i
-            ></span>
-            <span class="text-sm font-semibold text-bamboo-800"
+              ><i class="fa-solid fa-leaf"></i></span
+            ><span class="text-sm font-semibold text-bamboo-800"
               >Vegan Options</span
             >
           </div>
           <div class="flex items-center gap-3">
             <span
               class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center"
-              ><i class="fa-solid fa-wheat-awn-circle-exclamation"></i
-            ></span>
-            <span class="text-sm font-semibold text-bamboo-800"
-              >Gluten-Free Menu</span
+              ><i class="fa-solid fa-wheat-awn-circle-exclamation"></i></span
+            ><span class="text-sm font-semibold text-bamboo-800"
+              >Gluten-Free</span
             >
           </div>
           <div class="flex items-center gap-3">
             <span
               class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center"
-              ><i class="fa-solid fa-wine-glass"></i
-            ></span>
-            <span class="text-sm font-semibold text-bamboo-800"
+              ><i class="fa-solid fa-wine-glass"></i></span
+            ><span class="text-sm font-semibold text-bamboo-800"
               >Beer &amp; Wine</span
             >
           </div>
           <div class="flex items-center gap-3">
             <span
               class="w-10 h-10 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center"
-              ><i class="fa-solid fa-child"></i
-            ></span>
-            <span class="text-sm font-semibold text-bamboo-800"
+              ><i class="fa-solid fa-child"></i></span
+            ><span class="text-sm font-semibold text-bamboo-800"
               >Family Friendly</span
             >
           </div>
         </div>
         <a
           href="/contact"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-bamboo-900 text-white rounded-xl font-semibold hover:bg-bamboo-800 transition"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-bamboo-900 text-white rounded-xl font-semibold hover:bg-bamboo-800 transition-all hover:-translate-y-0.5 shadow-lg shadow-bamboo-900/20"
         >
           <i class="fa-solid fa-location-dot"></i> Find Us on State Street
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dining Guide (Banana Bistro style 4-step dining experience) -->
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-14 reveal">
+      <span
+        class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
+        >🥢 Dining Guide</span
+      >
+      <h2
+        class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
+      >
+        The Mi La-Cai Experience
+      </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center reveal-scale">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-brand-500/25"
+        >
+          1
+        </div>
+        <div class="text-3xl mb-2">🪑</div>
+        <h3 class="font-display font-bold text-lg text-bamboo-900 mb-1">
+          Find Your Seat
+        </h3>
+        <p class="text-gray-500 text-xs leading-relaxed">
+          Walk in or call ahead — casual, no-fuss seating for families &amp;
+          friends.
+        </p>
+      </div>
+      <div class="text-center reveal-scale" style="transition-delay: 0.1s">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-brand-500/25"
+        >
+          2
+        </div>
+        <div class="text-3xl mb-2">📋</div>
+        <h3 class="font-display font-bold text-lg text-bamboo-900 mb-1">
+          Browse &amp; Order
+        </h3>
+        <p class="text-gray-500 text-xs leading-relaxed">
+          Pick from 50+ Vietnamese &amp; Chinese dishes — vegan, GF &amp; kids'
+          options marked.
+        </p>
+      </div>
+      <div class="text-center reveal-scale" style="transition-delay: 0.2s">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-brand-500/25"
+        >
+          3
+        </div>
+        <div class="text-3xl mb-2">🍜</div>
+        <h3 class="font-display font-bold text-lg text-bamboo-900 mb-1">
+          Savor &amp; Enjoy
+        </h3>
+        <p class="text-gray-500 text-xs leading-relaxed">
+          Dig into generous portions of authentic flavors — add sriracha &amp;
+          hoisin to taste!
+        </p>
+      </div>
+      <div class="text-center reveal-scale" style="transition-delay: 0.3s">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-brand-500/25"
+        >
+          4
+        </div>
+        <div class="text-3xl mb-2">😊</div>
+        <h3 class="font-display font-bold text-lg text-bamboo-900 mb-1">
+          Come Back Soon
+        </h3>
+        <p class="text-gray-500 text-xs leading-relaxed">
+          Leave with a full belly &amp; a smile — we'll have your favorite dish
+          waiting next time!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Values (Nyonya Tingkat style) -->
+<section class="py-16 md:py-20 bg-bamboo-50/50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-14 reveal">
+      <span
+        class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
+        >💛 What We Stand For</span
+      >
+      <h2
+        class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
+      >
+        Our Values
+      </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div
+        class="bg-white rounded-3xl p-8 shadow-sm card-lift reveal-scale border border-gray-50"
+      >
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Our Mission
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          To bring authentic Vietnamese &amp; Chinese flavors to Salt Lake City
+          — one bowl of pho, one egg roll, and one smile at a time.
+        </p>
+      </div>
+      <div
+        class="bg-white rounded-3xl p-8 shadow-sm card-lift reveal-scale border border-gray-50"
+        style="transition-delay: 0.1s"
+      >
+        <div class="text-4xl mb-4">👁️</div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Our Vision
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          To be Salt Lake City's most loved destination for Vietnamese &amp;
+          Chinese comfort food — a place where every guest feels at home.
+        </p>
+      </div>
+      <div
+        class="bg-white rounded-3xl p-8 shadow-sm card-lift reveal-scale border border-gray-50"
+        style="transition-delay: 0.2s"
+      >
+        <div class="text-4xl mb-4">🤝</div>
+        <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
+          Our Promise
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Fresh ingredients daily. Authentic family recipes. Warm, welcoming
+          service. Every single time you visit.
+        </p>
       </div>
     </div>
   </div>
@@ -470,30 +687,30 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
     <div class="text-center mb-14 reveal">
       <span
         class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-        >What People Say</span
+        >💬 What People Say</span
       >
       <h2
         class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
       >
-        Guest Reviews
+        Happy Guests
       </h2>
-      <p class="text-gray-500 max-w-xl mx-auto">
-        Real words from our wonderful guests
-      </p>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div
         class="bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
       >
-        <div class="flex items-center gap-1 text-yellow-400 mb-5 text-sm">
+        <div class="flex items-center gap-1 text-yellow-400 mb-4 text-sm">
           ★ ★ ★ ★ ★
         </div>
         <p class="text-gray-600 leading-relaxed mb-6 italic">
-          "Best pho in Salt Lake City hands down. The broth is incredibly rich
-          and flavorful — you can tell it's been simmering for hours. The egg
-          rolls are perfectly crispy too!"
+          "Best pho in SLC hands down. The broth is incredibly rich — you can
+          tell it's been simmering for hours. Egg rolls are perfectly crispy
+          too!"
         </p>
-        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-5">
+        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-4">
           <div
             class="w-10 h-10 bg-gradient-to-br from-brand-400 to-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm"
           >
@@ -509,15 +726,15 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
         class="bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
         style="transition-delay: 0.1s"
       >
-        <div class="flex items-center gap-1 text-yellow-400 mb-5 text-sm">
+        <div class="flex items-center gap-1 text-yellow-400 mb-4 text-sm">
           ★ ★ ★ ★ ★
         </div>
         <p class="text-gray-600 leading-relaxed mb-6 italic">
-          "The walnut shrimp is absolutely incredible — crispy, sweet, and
-          perfectly balanced. Great family atmosphere and super friendly staff.
-          We come here every week!"
+          "The walnut shrimp is incredible — crispy, sweet, perfectly balanced.
+          Great family atmosphere &amp; super friendly staff. We come every
+          week!"
         </p>
-        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-5">
+        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-4">
           <div
             class="w-10 h-10 bg-gradient-to-br from-bamboo-400 to-bamboo-600 rounded-full flex items-center justify-center text-white font-bold text-sm"
           >
@@ -533,15 +750,15 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
         class="bg-bamboo-50/50 rounded-3xl p-8 card-lift reveal-scale border border-bamboo-100/50"
         style="transition-delay: 0.2s"
       >
-        <div class="flex items-center gap-1 text-yellow-400 mb-5 text-sm">
+        <div class="flex items-center gap-1 text-yellow-400 mb-4 text-sm">
           ★ ★ ★ ★ ★
         </div>
         <p class="text-gray-600 leading-relaxed mb-6 italic">
-          "As someone who's gluten-free, finding good Asian food is tough — but
-          Mi La-Cai has so many options! The vegetable pho and fresh spring
-          rolls are my go-to. So grateful for this place."
+          "As someone gluten-free, finding good Asian food is tough — Mi La-Cai
+          has so many options! The vegetable pho is my go-to. So grateful for
+          this place."
         </p>
-        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-5">
+        <div class="flex items-center gap-3 border-t border-bamboo-100 pt-4">
           <div
             class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm"
           >
@@ -558,75 +775,122 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
 </section>
 
 <!-- Service Options -->
-<section class="py-16 md:py-20 bg-bamboo-50">
-  <div class="max-w-7xl mx-auto px-4">
+<section class="py-16 md:py-20 bg-bamboo-50/50">
+  <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-14 reveal">
       <span
         class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-        >How to Enjoy</span
+        >🍽️ How to Enjoy</span
       >
       <h2
         class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
       >
         Ways to Dine
       </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center reveal-scale">
+      <div
+        class="text-center reveal-scale bg-white rounded-3xl p-8 shadow-sm card-lift border border-gray-50"
+      >
         <div
-          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform"
+          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg"
         >
-          <i class="fa-solid fa-chair"></i>
+          🪑
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
           Dine-In
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed">
           Relax in our warm, casual atmosphere. Perfect for family dinners and
-          catching up with friends over a steaming bowl of pho.
+          catching up with friends.
         </p>
       </div>
-      <div class="text-center reveal-scale" style="transition-delay: 0.1s">
+      <div
+        class="text-center reveal-scale bg-white rounded-3xl p-8 shadow-sm card-lift border border-gray-50"
+        style="transition-delay: 0.1s"
+      >
         <div
-          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform"
+          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg"
         >
-          <i class="fa-solid fa-bag-shopping"></i>
+          🛍️
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
           Takeout
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed">
-          Order ahead and pick up at the counter. All the flavors you love,
-          packed fresh and ready to enjoy at home.
+          Order ahead and pick up at the counter. All your favorites packed
+          fresh and ready to go.
         </p>
       </div>
-      <div class="text-center reveal-scale" style="transition-delay: 0.2s">
+      <div
+        class="text-center reveal-scale bg-white rounded-3xl p-8 shadow-sm card-lift border border-gray-50"
+        style="transition-delay: 0.2s"
+      >
         <div
-          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform"
+          class="w-20 h-20 bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg"
         >
-          <i class="fa-solid fa-car-side"></i>
+          🚗
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
           Curbside Pickup
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed">
-          Call ahead and we'll bring your order right to your car. Quick,
-          convenient, and completely contactless.
+          Call ahead and we'll bring your order to your car. Quick, convenient
+          &amp; contactless.
         </p>
       </div>
     </div>
-    <div class="flex justify-center mt-10 reveal">
+    <div class="flex justify-center mt-8 reveal">
       <span
         class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-50 text-red-500 rounded-full text-sm font-semibold border border-red-200"
+        ><i class="fa-solid fa-circle-xmark"></i> No delivery available at this
+        time</span
       >
-        <i class="fa-solid fa-circle-xmark"></i> No delivery available at this
-        time
-      </span>
     </div>
   </div>
 </section>
 
-<!-- Call to Action -->
+<!-- Catering / Events Callout (Nyonya Tingkat style) -->
+<section
+  class="py-14 bg-gradient-to-r from-bamboo-900 to-bamboo-950 text-white text-center relative overflow-hidden"
+>
+  <div
+    class="absolute inset-0 opacity-[0.03]"
+    style="
+      background-image: radial-gradient(
+        circle at 25px 25px,
+        white 2px,
+        transparent 0
+      );
+      background-size: 50px 50px;
+    "
+  ></div>
+  <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
+    <span
+      class="text-brand-400 text-sm tracking-[.25em] uppercase font-semibold"
+      >🎉 Events &amp; Catering</span
+    >
+    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 mb-4">
+      Hosting an Event?
+    </h2>
+    <p class="text-bamboo-200/70 max-w-xl mx-auto mb-8">
+      We offer large takeout orders for gatherings, parties &amp; office events.
+      Let us bring authentic Vietnamese &amp; Chinese flavors to your
+      celebration!
+    </p>
+    <a
+      href="tel:+18013223590"
+      class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-brand-500/30 transition-all hover:-translate-y-0.5"
+    >
+      <i class="fa-solid fa-phone"></i> Call to Discuss Catering
+    </a>
+  </div>
+</section>
+
+<!-- Final CTA -->
 <section class="relative py-20 md:py-28 overflow-hidden">
   <div class="absolute inset-0 z-0">
     <img
@@ -635,16 +899,22 @@ Chinese in Salt Lake City{% endblock %} {% block content %}
       class="w-full h-full object-cover"
     />
     <div
-      class="absolute inset-0 bg-gradient-to-r from-bamboo-950/95 via-bamboo-950/85 to-bamboo-950/70"
+      class="absolute inset-0"
+      style="
+        background: linear-gradient(
+          135deg,
+          rgba(26, 31, 20, 0.95) 0%,
+          rgba(26, 31, 20, 0.8) 100%
+        );
+      "
     ></div>
   </div>
-  <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal">
-    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+  <div class="max-w-3xl mx-auto px-4 text-center relative z-10 reveal">
+    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-5">
       Ready for the Best Pho<br />in Salt Lake City?
     </h2>
-    <p class="text-bamboo-200/80 text-lg mb-10 max-w-xl mx-auto">
-      Stop by for lunch or dinner — we're open six days a week in the heart of
-      downtown on State Street.
+    <p class="text-bamboo-200/70 text-lg mb-10">
+      Stop by for lunch or dinner — we're open six days a week on State Street.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a

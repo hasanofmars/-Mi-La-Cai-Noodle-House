@@ -67,12 +67,12 @@ House{% endblock %} {% block content %}
         False, False), ('Sunday', 'Closed', False, True), ] %} {% for day, time,
         highlight, closed in hours %}
         <div
-          class="flex items-center justify-between px-6 py-4 {% if loop.index is odd %}bg-white/40{% endif %} {% if closed %}bg-red-50/40{% endif %} hover:bg-bamboo-100/30 transition-colors"
+          class="flex items-center justify-between px-6 py-4 hover:bg-bamboo-100/30 transition-colors {% if closed %}bg-red-50/40{% elif loop.index is odd %}bg-white/40{% endif %}"
         >
           <span
             class="font-semibold {% if closed %}text-red-600{% else %}text-bamboo-800{% endif %}"
           >
-            {{ day }} {% if day == 'Saturday' %}<span
+            {{ day }}{% if day == 'Saturday' %}<span
               class="ml-2 text-[10px] bg-brand-100 text-brand-600 px-2 py-0.5 rounded-full font-medium"
               >Weekend</span
             >{% endif %}
@@ -86,7 +86,7 @@ House{% endblock %} {% block content %}
       </div>
       <p class="text-xs text-gray-400 mt-3 flex items-center gap-1">
         <i class="fa-solid fa-circle-info"></i> Hours may vary on holidays.
-        Please call ahead to confirm.
+        Please call ahead.
       </p>
     </div>
 
@@ -107,8 +107,6 @@ House{% endblock %} {% block content %}
           </p>
         </div>
       </div>
-
-      <!-- Map -->
       <div
         class="rounded-2xl overflow-hidden shadow-lg mb-6 border border-gray-100"
       >
@@ -123,8 +121,6 @@ House{% endblock %} {% block content %}
           class="grayscale hover:grayscale-0 transition-all duration-500"
         ></iframe>
       </div>
-
-      <!-- Contact Cards -->
       <div class="space-y-3">
         <a
           href="tel:+18013223590"
@@ -195,21 +191,21 @@ House{% endblock %} {% block content %}
 </section>
 
 <!-- Best Time to Visit -->
-<section class="py-16 md:py-20 bg-bamboo-50">
+<section class="py-16 md:py-20 bg-bamboo-50/50">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-14 reveal">
       <span
         class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-        >Plan Ahead</span
+        >⏰ Plan Ahead</span
       >
       <h2
         class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
       >
         Best Times to Visit
       </h2>
-      <p class="text-gray-500 max-w-xl mx-auto">
-        Beat the crowds and enjoy a relaxed dining experience
-      </p>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div
@@ -218,21 +214,20 @@ House{% endblock %} {% block content %}
         <div
           class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl mb-5"
         >
-          <i class="fa-solid fa-sun"></i>
+          ☀️
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
           Weekday Lunch
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed mb-4">
-          Arrive between
-          <strong class="text-bamboo-800">11 AM – 12 PM</strong> to beat the
-          noon rush. The quietest time for a peaceful meal.
+          Arrive <strong class="text-bamboo-800">11 AM – 12 PM</strong> to beat
+          the noon rush. The quietest time for a peaceful meal.
         </p>
         <span
           class="inline-flex items-center gap-1.5 text-xs px-3.5 py-1.5 bg-green-50 text-green-700 rounded-full font-semibold border border-green-200"
+          ><span class="w-2 h-2 bg-green-500 rounded-full"></span> Least
+          Crowded</span
         >
-          <span class="w-2 h-2 bg-green-500 rounded-full"></span> Least Crowded
-        </span>
       </div>
       <div
         class="bg-white rounded-3xl p-8 shadow-sm card-lift reveal-scale border border-gray-50"
@@ -241,21 +236,20 @@ House{% endblock %} {% block content %}
         <div
           class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5"
         >
-          <i class="fa-solid fa-cloud-sun"></i>
+          🌤️
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
           Early Dinner
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed mb-4">
           <strong class="text-bamboo-800">4 PM – 5:30 PM</strong> is the sweet
-          spot — shorter wait times and the same great food before the evening
-          rush.
+          spot — shorter wait times before the evening rush.
         </p>
         <span
           class="inline-flex items-center gap-1.5 text-xs px-3.5 py-1.5 bg-amber-50 text-amber-700 rounded-full font-semibold border border-amber-200"
+          ><span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+          Moderate</span
         >
-          <span class="w-2 h-2 bg-amber-500 rounded-full"></span> Moderate
-        </span>
       </div>
       <div
         class="bg-white rounded-3xl p-8 shadow-sm card-lift reveal-scale border border-gray-50"
@@ -264,59 +258,62 @@ House{% endblock %} {% block content %}
         <div
           class="w-14 h-14 bg-red-100 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-5"
         >
-          <i class="fa-solid fa-moon"></i>
+          🌙
         </div>
         <h3 class="font-display font-bold text-xl text-bamboo-900 mb-3">
-          Friday &amp; Saturday Evenings
+          Weekend Evenings
         </h3>
         <p class="text-gray-500 text-sm leading-relaxed mb-4">
           <strong class="text-bamboo-800">6 PM – 8:30 PM</strong> is our busiest
-          window. Expect a short wait — but the weekend energy is worth it!
+          window. Expect a short wait — the energy is worth it!
         </p>
         <span
           class="inline-flex items-center gap-1.5 text-xs px-3.5 py-1.5 bg-red-50 text-red-500 rounded-full font-semibold border border-red-200"
+          ><span class="w-2 h-2 bg-red-500 rounded-full"></span> Busiest</span
         >
-          <span class="w-2 h-2 bg-red-500 rounded-full"></span> Busiest
-        </span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ (accordion) -->
 <section class="py-16 md:py-20 bg-white">
   <div class="max-w-3xl mx-auto px-4">
     <div class="text-center mb-14 reveal">
       <span
         class="text-brand-500 font-semibold text-sm tracking-[.25em] uppercase"
-        >Quick Answers</span
+        >💡 Quick Answers</span
       >
       <h2
         class="text-4xl md:text-5xl font-display font-bold text-bamboo-900 mt-3 mb-4"
       >
         Frequently Asked
       </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold-400 rounded-full mx-auto"
+      ></div>
     </div>
-    <div class="space-y-4 reveal">
+    <div class="space-y-3 reveal">
       {% set faqs = [ ('Do you take reservations?', 'We operate on a first-come,
-      first-served basis. For large parties (6+), we recommend calling ahead so
-      we can prepare.'), ('Is there parking available?', 'Yes! Free parking is
-      available in the lot adjacent to our building on State Street, plus ample
-      street parking.'), ('Do you offer delivery?', 'We do not offer delivery at
-      this time. However, we provide dine-in, takeout, and convenient curbside
-      pickup.'), ('Are your pho broths gluten-free?', 'Yes! Our traditional beef
-      and chicken pho broths are naturally gluten-free. We also have many GF
-      options clearly marked on our menu.'), ('Do you cater events?', 'We offer
-      large takeout orders for events and gatherings. Please call us at (801)
-      322-3590 to discuss your catering needs.'), ] %} {% for q, a in faqs %}
+      first-served basis. For large parties of 6+, we recommend calling ahead so
+      we can best accommodate your group.'), ('Is there parking available?',
+      'Yes! Free parking is available in the lot adjacent to our building on
+      State Street, plus ample street parking on both sides.'), ('Do you offer
+      delivery?', 'We do not offer delivery at this time. However, we provide
+      dine-in, takeout, and convenient curbside pickup for all orders.'), ('Are
+      your pho broths gluten-free?', 'Yes! Our traditional beef and chicken pho
+      broths are naturally gluten-free. We also have many GF options clearly
+      marked on our full menu.'), ('Do you cater events?', 'Absolutely! We offer
+      large takeout orders for gatherings, office events &amp; parties. Call us
+      at (801) 322-3590 to discuss your catering needs.'), ] %} {% for q, a in
+      faqs %}
       <details
         class="group bg-bamboo-50/50 rounded-2xl border border-bamboo-100/50 overflow-hidden transition-all duration-300 hover:border-brand-200"
       >
         <summary
           class="flex items-center justify-between px-6 py-5 cursor-pointer font-semibold text-bamboo-900 list-none"
         >
-          {{ q }}
-          <span
+          {{ q }}<span
             class="text-brand-500 group-open:rotate-45 transition-transform duration-300 text-lg"
             >+</span
           >
@@ -330,17 +327,17 @@ House{% endblock %} {% block content %}
   </div>
 </section>
 
-<!-- CTA -->
+<!-- Final CTA -->
 <section
-  class="relative py-20 overflow-hidden"
+  class="relative py-16 overflow-hidden"
   style="background: linear-gradient(135deg, #1a1f14 0%, #353d2b 100%)"
 >
   <div class="max-w-3xl mx-auto px-4 text-center relative z-10 reveal">
     <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-      Ready to Visit?
+      Chào mừng · 欢迎 · Welcome
     </h2>
     <p class="text-bamboo-200/70 text-lg mb-8">
-      We're at 961 S State St — see you soon!
+      We're at 961 S State St — see you soon! 🍜
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
